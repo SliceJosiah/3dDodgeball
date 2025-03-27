@@ -32,16 +32,14 @@
             // 
             // Game2
             // 
-            Player1 player1 = new Player1();
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Bisque;
             ClientSize = new Size(484, 811);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Game2";
             Text = "Game2";
-            KeyDown += player1.inputKey;
-            KeyUp += player1.inputKeyUp;
             ResumeLayout(false);
         }
 
