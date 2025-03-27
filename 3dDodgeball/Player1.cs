@@ -53,7 +53,7 @@ namespace _3dDodgeball
             if (e.KeyCode == Keys.LShiftKey)
             {
                 keyDown[3] = true;
-                if (keyTogState = 0)    //if player should be standing
+                if (keyTogState == 0)    //if player should be standing
                 {
                     keyTogState = 1;    //player should be running
                 }
@@ -61,7 +61,7 @@ namespace _3dDodgeball
             if (e.KeyCode == Keys.LControlKey)
             {
                 keyDown[4] = true;
-                if (keyTogState = 0)    //if player should be standing
+                if (keyTogState == 0)    //if player should be standing
                 {
                     keyTogState = 2;    //player should be crouching
                 }
@@ -137,23 +137,23 @@ namespace _3dDodgeball
                 playerStatus = keyTogState;
 
                 //movement
-                if (keyTogDir = 1 && playerPos > 0) //if player should be moving left and is not behind the left
+                if (keyTogDir == 1 && playerPos > 0) //if player should be moving left and is not behind the left
                 {
                     playerSpeedMult = -1;    //player moves towards left
                 }
-                if (keyTogDir = 2 && playerPos < (playerMaxPos - playerWidth))  //if player should be moving right and is not in front of the maximum position
+                if (keyTogDir == 2 && playerPos < (playerMaxPos - playerWidth))  //if player should be moving right and is not in front of the maximum position
                 {
                     playerSpeedMult = 1; //player moves away from left
                 }
-                if  (keyTogDir = 0) //if player should not be moving
+                if  (keyTogDir == 0) //if player should not be moving
                 {
                     playerSpeedMult = 0; //player does not move
                 }
-                if (playerStatus = 1)   //if player is running
+                if (playerStatus == 1)   //if player is running
                 {
                     playerSpeedMult *= 2;    //player moves at twice the speed
                 }
-                if (playerStatus = 2)   //if player is crouching
+                if (playerStatus == 2)   //if player is crouching
                 {
                     playerSpeedMult *= 0.25; //player moves at a quarter of the speed
                 }

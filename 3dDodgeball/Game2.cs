@@ -12,7 +12,8 @@ namespace _3dDodgeball
 {
     public partial class Game2 : Form
     {
-        GameUpd1 gameUpd1 = new GameUpd1()
+        GameUpd1 gameUpd1 = new GameUpd1();
+        Player1 player1 = new Player1();
         public Game2()
         {
             InitializeComponent();

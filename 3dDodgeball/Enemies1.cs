@@ -33,6 +33,7 @@ namespace _3dDodgeball
         public double[] throwSpeed; //throwing speed (in m/s)
         double[] baseStateTime;    //base random number of seconds left for enemy status to change
         double[] fullStateTime; //full number of seconds left for enemy status change after modifiers are applied
+        double[] playerDistancePerc;    //percentage distance from player ( (enemyPos-playerPos)/enemyPosMax
 
         Random random = new Random(Guid.NewGuid().GetHashCode());   //found this code on stackoverflow for a decent random seed generator, uses the hash code for a new guid integer as a seed
 
@@ -42,7 +43,7 @@ namespace _3dDodgeball
             enemyWidth = new double[enemyCount];
             enemyHeight = new double[enemyCount];
             lefthanded = new bool[enemyCount];
-            enemyStatus = new double[enemyCount];
+            enemyStatus = new int[enemyCount];
             baseStateTime = new double[enemyCount];
             fullStateTime = new double[enemyCount];
 
@@ -64,22 +65,22 @@ namespace _3dDodgeball
                     else j++;   //otherwise, advance
                 }
                 enemyHeight[i] = enemyWidth[i] * 4.5;  //enemy height is enemy width times 4.5
-                baseStateTime = random.NextDouble() * (5 - 10) + 10;   //generate initial baseline time, between 5 and 10 seconds (longer than usual to give the player time to react)
+                baseStateTime[i] = random.NextDouble() * (5 - 10) + 10;   //generate initial baseline time, between 5 and 10 seconds (longer than usual to give the player time to react)
             }
         }
 
-        public 
+        
 
         public void updateEnemy()
         {
             for (int i = 0; i < enemyCount; i++)
             {
-                if (enemyStatus = 5) 
+                if (enemyStatus[i] == 5) 
                 {
                     
                     continue;
                 }
-                if (enemyStatus = 0)    //if enemy is idle
+                if (enemyStatus[i] == 0)    //if enemy is idle
                 {
                     
                 }
