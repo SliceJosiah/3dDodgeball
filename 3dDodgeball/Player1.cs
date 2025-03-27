@@ -11,34 +11,58 @@ namespace _3dDodgeball
         Game2 game2 = new Game2();
 
         //variables for player properties
-        public double playerPos;    //player position on x axis (distance from left in m)
-        public double playerMaxPos;  //maximum distance from right side (should be same as enemyMaxPos)
+        public double playerPos {get; set;}    //player position on x axis (distance from left in m)
+        public double playerMaxPos;  //maximum distance from right side (in m) (should be same as enemyMaxPos)
         public double playerSpeed;  //determines the baseline speed (in m/s) of the player movement
         public double playerWidth;  //hitbox width (shoulder width) of player
 
         //variables for player state
-        public double playerMove;   //how fast the player is actually moving (in m/s)
-        public int playerStatus;    //0 = standing, 1 = ducking, 2 = running, 3 = hit, 4 = out
+        public double playerSpeedMult = 0;   //number to multiply playerSpeed by for playerMove
+        public double playerMove = 0;   //how fast the player is actually moving (in m/s)
+        public int playerStatus = 0;    //0 = standing, 1 = running, 2 = crouching, 3 = hit, 4 = out
+        public double playerHealth = 1; //percentage player health (in deciman)
 
         //variables for input handling
         public int keyTopClass;  //determines top class of action key being pressed
         public int keyNum;  //number of keys being pressed
-        int dirKeyNum;  //determines which direction key is being pressed (to avoid overlap); 0 = idle, 1 = left, 2 = right
-        bool[] dirKeyArray; //is key down; 0 = enter, 1 = left, 2 = right, 3 = shift, 4 = ctrl
+
+        //integers for defining the effect of keys based on input order (for avoiding overlap and queuing)
+        int keyTogDir;  //for move direction; 0 = idle, 1 = left, 2 = right; last pressed takes priority
+        int keyTogState;    //for player state; 0 = standing, 1 = running, 2 = crouching; first pressed takes priority
+
+        bool[] keyDown; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl
         public void inputKey(object sender, KeyEventArgs e)
         {
-            keyNum++;
-            //if (!gameOver)
-            if (playerStatus < 3)   //if player is not recovering from a hit or out
+            keyNum++;   //add key to keynum
+            
+            if (e.KeyCode == Keys.Enter)
             {
-                //move player (l/r)
-                if (e.KeyCode == Keys.Left && playerPos >= 0)
+                keyDown[0] = true;
+            }
+            if (e.KeyCode == Keys.Left && playerPos >= 0)
+            {
+                keyDown[1] = true;
+                keyTogDir = 1;
+            }
+            if (e.KeyCode == Keys.Right && playerPos <= playerMaxPos - playerWidth)
+            {
+                keyDown[2] = true;
+                keyTogDir = 2;
+            }
+            if (e.KeyCode == Keys.LShiftKey)
+            {
+                keyDown[3] = true;
+                if (keyTogState = 0)    //if player should be standing
                 {
-                    dirKeyNum = 1;
+                    keyTogState = 1;    //player should be running
                 }
-                if (e.KeyCode == Keys.Right && playerPos <= playerMaxPos - playerWidth)
+            }
+            if (e.KeyCode == Keys.LControlKey)
+            {
+                keyDown[4] = true;
+                if (keyTogState = 0)    //if player should be standing
                 {
-                    dirKeyNum = 2;
+                    keyTogState = 2;    //player should be crouching
                 }
             }
         }
@@ -47,7 +71,93 @@ namespace _3dDodgeball
         {
             if (keyNum >= 0)    //if keyNum is not negative
             {
-                keyNum--;
+                keyNum--;   //subtract key from keynum
+            }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                keyDown[0] = false;
+            }
+            if (e.KeyCode == Keys.Left && playerPos >= 0)
+            {
+                keyDown[1] = false;
+                if (keyDown[2] = true)  //if right key is also being pressed
+                {
+                    keyTogDir = 2   //player direction should be right
+                }
+                else
+                {
+                    keyTogDir = 0   //player should be idle
+                }
+            }
+            if (e.KeyCode == Keys.Right && playerPos <= playerMaxPos - playerWidth)
+            {
+                keyDown[2] = false;
+                if (keyDown[1] = true)  //if right key is also being pressed
+                {
+                    keyTogDir = 1   //player direction should be left
+                }
+                else
+                {
+                    keyTogDir = 0   //player should be idle
+                }
+            }
+            if (e.KeyCode == Keys.LShiftKey)
+            {
+                keyDown[3] = false;
+                if (keyDown[4] = true)  //if lctrl key is also being pressed
+                {
+                    keyTogState = 2;    //player should be crouching
+                }
+                else
+                {
+                    keyTogState = 0;    //player should be standing
+                }
+            }
+            if (e.KeyCode == Keys.LControlKey)
+            {
+                keyDown[4] = false;
+                if (keyDown[3] = true)  //if lshift key is also being pressed
+                {
+                    keyTogState = 1;    //player should be running
+                }
+                else
+                {
+                    keyTogState = 0;    //player should be standing
+                }
+            }
+        }
+
+        public void updatePlayer ()
+        {
+            if (playerStatus < 3)   //if player is not hit or out
+            {
+                playerStatus = keyTogState
+
+                //movement
+                if (keyTogDir = 1 && playerPos > 0) //if player should be moving left and is not behind the left
+                {
+                    playerSpeedMult = -1    //player moves towards left
+                }
+                if (keyTogDir = 2 && playerPos < (playerMaxPos - playerWidth))  //if player should be moving right and is not in front of the maximum position
+                {
+                    playerSpeedMult = 1 //player moves away from left
+                }
+                if  (keyTogDir = 0) //if player should not be moving
+                {
+                    playerSpeedMult = 0 //player does not move
+                }
+                if (playerStatus = 1)   //if player is running
+                {
+                    playerSpeedMult *= 2    //player moves at twice the speed
+                }
+                if (playerStatus = 2)   //if player is crouching
+                {
+                    playerSpeedMult *= 0.25 //player moves at a quarter of the speed
+                }
+
+                playerMove = (playerSpeed * playerSpeedMult);   //player move speed is equal to the base player speed times the player speed multiplication value
+                playerPos += (playerMove / 100);    //convert player move speed from m/s to m/10ms and add it to the player position
             }
         }
     }
