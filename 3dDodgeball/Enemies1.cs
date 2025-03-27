@@ -27,7 +27,7 @@ namespace _3dDodgeball
         int j;  //number enemy being position checked
 
         //variables for enemy actions
-        public int[] enemyStatus = 1;   //0 = no ball, 1 = holding ball, 2 = preparing to throw ball, 3 = throwing ball, 4 = just threw ball, 5 = hit, 6 = timeout, 7 = walking
+        public int[] enemyStatus;   //0 = no ball, 1 = holding ball, 2 = preparing to throw ball, 3 = throwing ball, 4 = just threw ball, 5 = hit, 6 = timeout, 7 = walking
         public double[] throwAngleHor; //horizontal throwing angle (in degrees)
         public double[] throwAngleVert;    //vertical throwing angle (in degrees)
         public double[] throwSpeed; //throwing speed (in m/s)
@@ -42,7 +42,9 @@ namespace _3dDodgeball
             enemyWidth = new double[enemyCount];
             enemyHeight = new double[enemyCount];
             lefthanded = new bool[enemyCount];
-            stateTime = new double[enemyCount];
+            enemyStatus = new double[enemyCount];
+            baseStateTime = new double[enemyCount];
+            fullStateTime = new double[enemyCount];
 
             for (int i = 0; i < enemyCount; i++)    //for each enemy (of a number which is determined by enemyCount)
             {
@@ -62,15 +64,25 @@ namespace _3dDodgeball
                     else j++;   //otherwise, advance
                 }
                 enemyHeight[i] = enemyWidth[i] * 4.5;  //enemy height is enemy width times 4.5
-                baseStateTime = random.NextDouble() * (5)
+                baseStateTime = random.NextDouble() * (5 - 10) + 10;   //generate initial baseline time, between 5 and 10 seconds (longer than usual to give the player time to react)
             }
         }
+
+        public 
 
         public void updateEnemy()
         {
             for (int i = 0; i < enemyCount; i++)
             {
-
+                if (enemyStatus = 5) 
+                {
+                    
+                    continue;
+                }
+                if (enemyStatus = 0)    //if enemy is idle
+                {
+                    
+                }
             }
         }
     }

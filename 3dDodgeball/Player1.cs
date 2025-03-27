@@ -15,6 +15,7 @@ namespace _3dDodgeball
         public double playerMaxPos;  //maximum distance from right side (in m) (should be same as enemyMaxPos)
         public double playerSpeed;  //determines the baseline speed (in m/s) of the player movement
         public double playerWidth;  //hitbox width (shoulder width) of player
+        public double playerMiddle; //x axis position of the centre of the player
 
         //variables for player state
         public double playerSpeedMult = 0;   //number to multiply playerSpeed by for playerMove
@@ -83,11 +84,11 @@ namespace _3dDodgeball
                 keyDown[1] = false;
                 if (keyDown[2] = true)  //if right key is also being pressed
                 {
-                    keyTogDir = 2   //player direction should be right
+                    keyTogDir = 2;   //player direction should be right
                 }
                 else
                 {
-                    keyTogDir = 0   //player should be idle
+                    keyTogDir = 0;   //player should be idle
                 }
             }
             if (e.KeyCode == Keys.Right && playerPos <= playerMaxPos - playerWidth)
@@ -95,11 +96,11 @@ namespace _3dDodgeball
                 keyDown[2] = false;
                 if (keyDown[1] = true)  //if right key is also being pressed
                 {
-                    keyTogDir = 1   //player direction should be left
+                    keyTogDir = 1;   //player direction should be left
                 }
                 else
                 {
-                    keyTogDir = 0   //player should be idle
+                    keyTogDir = 0;   //player should be idle
                 }
             }
             if (e.KeyCode == Keys.LShiftKey)
@@ -130,30 +131,31 @@ namespace _3dDodgeball
 
         public void updatePlayer ()
         {
+            
             if (playerStatus < 3)   //if player is not hit or out
             {
-                playerStatus = keyTogState
+                playerStatus = keyTogState;
 
                 //movement
                 if (keyTogDir = 1 && playerPos > 0) //if player should be moving left and is not behind the left
                 {
-                    playerSpeedMult = -1    //player moves towards left
+                    playerSpeedMult = -1;    //player moves towards left
                 }
                 if (keyTogDir = 2 && playerPos < (playerMaxPos - playerWidth))  //if player should be moving right and is not in front of the maximum position
                 {
-                    playerSpeedMult = 1 //player moves away from left
+                    playerSpeedMult = 1; //player moves away from left
                 }
                 if  (keyTogDir = 0) //if player should not be moving
                 {
-                    playerSpeedMult = 0 //player does not move
+                    playerSpeedMult = 0; //player does not move
                 }
                 if (playerStatus = 1)   //if player is running
                 {
-                    playerSpeedMult *= 2    //player moves at twice the speed
+                    playerSpeedMult *= 2;    //player moves at twice the speed
                 }
                 if (playerStatus = 2)   //if player is crouching
                 {
-                    playerSpeedMult *= 0.25 //player moves at a quarter of the speed
+                    playerSpeedMult *= 0.25; //player moves at a quarter of the speed
                 }
 
                 playerMove = (playerSpeed * playerSpeedMult);   //player move speed is equal to the base player speed times the player speed multiplication value
