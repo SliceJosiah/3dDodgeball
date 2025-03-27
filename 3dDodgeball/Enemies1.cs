@@ -8,6 +8,8 @@ namespace _3dDodgeball
 {
     internal class Enemies1
     {
+        Player1 player1 = new Player1();
+
         //variables for all enemy behaviour
         public double enemyPosLine { get; set; }    //distance between enemy position line and top of form, defined in form
         public double enemyPosMax { get; set; } //horizontal space enemies have to move, defined in form
@@ -25,10 +27,12 @@ namespace _3dDodgeball
         int j;  //number enemy being position checked
 
         //variables for enemy actions
-        public int[] enemyStatus;   //0 = no ball, 1 = holding ball, 2 = preparing to throw ball, 3 = throwing ball, 4 = just threw ball, 5 = hit, 6 = timeout, 7 = walking
+        public int[] enemyStatus = 1;   //0 = no ball, 1 = holding ball, 2 = preparing to throw ball, 3 = throwing ball, 4 = just threw ball, 5 = hit, 6 = timeout, 7 = walking
         public double[] throwAngleHor; //horizontal throwing angle (in degrees)
         public double[] throwAngleVert;    //vertical throwing angle (in degrees)
         public double[] throwSpeed; //throwing speed (in m/s)
+        double[] baseStateTime;    //base random number of seconds left for enemy status to change
+        double[] fullStateTime; //full number of seconds left for enemy status change after modifiers are applied
 
         Random random = new Random(Guid.NewGuid().GetHashCode());   //found this code on stackoverflow for a decent random seed generator, uses the hash code for a new guid integer as a seed
 
@@ -38,6 +42,7 @@ namespace _3dDodgeball
             enemyWidth = new double[enemyCount];
             enemyHeight = new double[enemyCount];
             lefthanded = new bool[enemyCount];
+            stateTime = new double[enemyCount];
 
             for (int i = 0; i < enemyCount; i++)    //for each enemy (of a number which is determined by enemyCount)
             {
@@ -57,12 +62,16 @@ namespace _3dDodgeball
                     else j++;   //otherwise, advance
                 }
                 enemyHeight[i] = enemyWidth[i] * 4.5;  //enemy height is enemy width times 4.5
+                baseStateTime = random.NextDouble() * (5)
             }
         }
 
-        public void enemyShoot()
+        public void updateEnemy()
         {
+            for (int i = 0; i < enemyCount; i++)
+            {
 
+            }
         }
     }
 }
