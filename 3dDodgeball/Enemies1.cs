@@ -30,10 +30,10 @@ namespace _3dDodgeball
         public int[] enemyStatus;   //0 = no ball, 1 = holding ball, 2 = preparing to throw ball, 3 = throwing ball, 4 = just threw ball, 5 = hit, 6 = timeout, 7 = walking
         public double[] throwAngleHor; //horizontal throwing angle (in degrees)
         public double[] throwAngleVert;    //vertical throwing angle (in degrees)
-        public double[] throwSpeed; //throwing speed (in m/s)
+        public double[] maxThrowSpeed; //maximum throwing speed (in m/s)
         double[] baseStateTime;    //base random number of seconds left for enemy status to change
         double[] fullStateTime; //full number of seconds left for enemy status change after modifiers are applied
-        double[] playerDistancePerc;    //percentage distance from player ( (enemyPos-playerPos)/enemyPosMax
+        double[] playerDistancePerc;    //percentage distance from player ( (enemyPos-playerPos)/enemyPosMax )
 
         Random random = new Random(Guid.NewGuid().GetHashCode());   //found this code on stackoverflow for a decent random seed generator, uses the hash code for a new guid integer as a seed
 
@@ -46,6 +46,8 @@ namespace _3dDodgeball
             enemyStatus = new int[enemyCount];
             baseStateTime = new double[enemyCount];
             fullStateTime = new double[enemyCount];
+            throwAngleHor = new double[enemyCount];
+            throwAngleVert = new double[enemyCount];
 
             for (int i = 0; i < enemyCount; i++)    //for each enemy (of a number which is determined by enemyCount)
             {
@@ -77,12 +79,19 @@ namespace _3dDodgeball
             {
                 if (enemyStatus[i] == 5) 
                 {
-                    
+                    baseStateTime[i] -= 0.01;
                     continue;
                 }
+                playerDistancePerc[i] = (player1.playerPos - enemyPos[i])/enemyPosMax;
                 if (enemyStatus[i] == 0)    //if enemy is idle
                 {
-                    
+                    baseStateTime[i] -= 0.01;
+                }
+                if (enemyStatus[i] == 1)
+                {
+                    baseStateTime[i] -= 0.01;
+                    throwAngleHor[i] = Math.Atan(10/(player1.playerPos - enemyPos[i]));
+
                 }
             }
         }
