@@ -19,7 +19,7 @@ namespace _3dDodgeball
         private void init1()
         {
             //ballVelX = Math.Sqrt((2*-9.8*2.5)/( ));
-            ballVelX = Math.Sqrt((2*-9.8*-1)/(-0.5^2-1));
+            ballVelX = Math.Sqrt((2*-9.8*-1)/(Math.Pow(-0.5, 2)-1));
         }
 
         private void draw1(object sender, System.Windows.Forms.PaintEventArgs e)
