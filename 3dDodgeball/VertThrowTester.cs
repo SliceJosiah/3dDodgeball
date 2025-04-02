@@ -21,6 +21,7 @@ namespace _3dDodgeball
         double ballThrowSpeed;
         double ballThrowAngle;
         double gravAccel = -9.8;
+        double ballDiameter = 0.3;
         double playerHeight = 2;
         Random random = new Random(Guid.NewGuid().GetHashCode());   //found this code on stackoverflow for a decent random seed generator, uses the hash code for a new guid integer as a seed
         
@@ -28,7 +29,7 @@ namespace _3dDodgeball
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            this.Paint += DrawGame;
+            this.Paint += drawBall;
         }
 
         private void btnThrow_Click(object sender, EventArgs e)
@@ -50,12 +51,18 @@ namespace _3dDodgeball
 
         public void testTimer(object sender, EventArgs e)
         {
-            
+            if (ballVelX <= 0) return;
+
+            ballVelY += gravAccel / 100;
+            ballY += ballVelY / 100;
+            ballX += ballVelX / 100;
         }
 
         public void drawBall(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+
+            e.Graphics.FillEllipse(Brushes.Red, Convert.ToSingle(ballY - ballDiameter * 0.5) * 100, Convert.ToSingle(ballY - ballDiameter * 0.5) * 100, Convert.ToSingle(ballDiameter) * 100, Convert.ToSingle(ballDiameter) * 100);
         }
     }
 }
