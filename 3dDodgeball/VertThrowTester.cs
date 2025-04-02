@@ -17,21 +17,31 @@ namespace _3dDodgeball
         double maxDist1 = 10;
         double ballVelX;
         double ballVelY;
-        double ballStartX;
+        double ballStartY;
+        double ballThrowSpeed;
+        double ballThrowAngle;
+        double gravAccel = -9.8;
+        double playerHeight = 2;
         Random random = new Random(Guid.NewGuid().GetHashCode());   //found this code on stackoverflow for a decent random seed generator, uses the hash code for a new guid integer as a seed
         
         public VertThrowTester()
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+            this.Paint += DrawGame;
         }
 
         private void btnThrow_Click(object sender, EventArgs e)
         {
-            ballX = 0;
-            ballY = 2;
-            ballVelX = Math.Sqrt((2 * -9.8 * -1) / (Math.Pow(-0.5, 2) - 1));
-            ballVelY = 2;
+            this.Invalidate();
+
+            ballY = 0;
+            ballX = 2;
+            ballThrowAngle = 30;
+            ballThrowSpeed = 10;
+            ballVelY = ballThrowSpeed * Math.Sin(ballThrowAngle);
+            ballVelX = ballThrowSpeed * Math.Cos(ballThrowAngle);
+            
             System.Windows.Forms.Timer updateTimer = new System.Windows.Forms.Timer();    //make timer
             updateTimer.Interval = 10;    //update every 10 ms (must be nice number for proper physics
             updateTimer.Tick += testTimer;   //run gameTimer (in GameUpd) for each timer tick
@@ -41,6 +51,11 @@ namespace _3dDodgeball
         public void testTimer(object sender, EventArgs e)
         {
             
+        }
+
+        public void drawBall(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
         }
     }
 }
