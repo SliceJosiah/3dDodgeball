@@ -139,7 +139,7 @@ namespace _3dDodgeball
             if (e.KeyCode == Keys.Z)
             {
                 keyDown[5] = false;
-                if (parryState = 1)
+                if (parryState == 1)
                 {
                     parryState = 0;
                 }

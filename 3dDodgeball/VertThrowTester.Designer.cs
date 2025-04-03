@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             btnThrow = new Button();
+            lblX = new Label();
+            lblY = new Label();
             SuspendLayout();
             // 
             // btnThrow
             // 
-            btnThrow.Location = new Point(12, 12);
+            btnThrow.Location = new Point(897, 12);
             btnThrow.Name = "btnThrow";
             btnThrow.Size = new Size(75, 23);
             btnThrow.TabIndex = 0;
@@ -41,19 +43,42 @@
             btnThrow.UseVisualStyleBackColor = true;
             btnThrow.Click += btnThrow_Click;
             // 
+            // lblX
+            // 
+            lblX.AutoSize = true;
+            lblX.Location = new Point(897, 114);
+            lblX.Name = "lblX";
+            lblX.Size = new Size(13, 15);
+            lblX.TabIndex = 1;
+            lblX.Text = "0";
+            // 
+            // lblY
+            // 
+            lblY.AutoSize = true;
+            lblY.Location = new Point(897, 129);
+            lblY.Name = "lblY";
+            lblY.Size = new Size(13, 15);
+            lblY.TabIndex = 2;
+            lblY.Text = "0";
+            // 
             // VertThrowTester
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(984, 661);
+            Controls.Add(lblY);
+            Controls.Add(lblX);
             Controls.Add(btnThrow);
             Name = "VertThrowTester";
             Text = "VertThrowTester";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button btnThrow;
+        private Label lblX;
+        private Label lblY;
     }
 }
