@@ -62,7 +62,7 @@ namespace _3dDodgeball
         {
             Graphics g = e.Graphics;
 
-            e.Graphics.FillEllipse(Brushes.Red, Convert.ToSingle(ballY - ballDiameter * 0.5) * 100, Convert.ToSingle(ballY - ballDiameter * 0.5) * 100, Convert.ToSingle(ballDiameter) * 100, Convert.ToSingle(ballDiameter) * 100);
+            e.Graphics.FillEllipse(Brushes.Red, Convert.ToSingle(ballX - ballDiameter * 0.5) * 100, this.ClientRectangle.Height -  Convert.ToSingle(ballY - ballDiameter * 0.5) * 100, Convert.ToSingle(ballDiameter) * 100, Convert.ToSingle(ballDiameter) * 100);
         }
     }
 }

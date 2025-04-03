@@ -9,6 +9,7 @@ namespace _3dDodgeball
     internal class Player1
     {
         Game2 game2 = new Game2();
+        Physics1 physics1 = new Physics1();
 
         //variables for player properties
         public double playerPos {get; set;}    //player position on x axis (distance from left in m)
@@ -31,7 +32,11 @@ namespace _3dDodgeball
         int keyTogDir;  //for move direction; 0 = idle, 1 = left, 2 = right; last pressed takes priority
         int keyTogState;    //for player state; 0 = standing, 1 = running, 2 = crouching; first pressed takes priority
 
-        bool[] keyDown; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl
+        //integers for parrying ball
+        int parryState;    //0 = not parrying, 1 = not parrying, but key is down (seperate to prevent spamming), 2 = parrying, 3 = disabled
+        double parryTimer = 0;  //universal timer used for parrying times
+
+        bool[] keyDown; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl, 5 = z
         public void inputKey(object sender, KeyEventArgs e)
         {
             keyNum++;   //add key to keynum
@@ -66,11 +71,15 @@ namespace _3dDodgeball
                     keyTogState = 2;    //player should be crouching
                 }
             }
+            if (e.KeyCode == Keys.Z)
+            {
+                keyDown[5] = true;
+            }
         }
 
         public void inputKeyUp(object sender, KeyEventArgs e)
         {
-            if (keyNum >= 0)    //if keyNum is not negative
+            if (keyNum > 0)    //if keyNum is not negative
             {
                 keyNum--;   //subtract key from keynum
             }
@@ -127,22 +136,39 @@ namespace _3dDodgeball
                     keyTogState = 0;    //player should be standing
                 }
             }
+            if (e.KeyCode == Keys.Z)
+            {
+                keyDown[5] = false;
+                if (parryState = 1)
+                {
+                    parryState = 0;
+                }
+            }
         }
 
         public void updatePlayer ()
         {
-            
             if (playerStatus < 3)   //if player is not hit or out
             {
                 playerStatus = keyTogState;
 
                 //movement
-                if (keyTogDir == 1 && playerPos > 0) //if player should be moving left and is not behind the left
+                if (keyTogDir == 1) //if player should be moving left
                 {
+                    if (playerPos <= 0)  //if player is behind or at the maximum left
+                    {
+                        playerPos = 0;  //player should be at 0
+                        playerSpeedMult = 0;    //player does not move
+                    }
                     playerSpeedMult = -1;    //player moves towards left
                 }
-                if (keyTogDir == 2 && playerPos < (playerMaxPos - playerWidth))  //if player should be moving right and is not in front of the maximum position
+                if (keyTogDir == 2)  //if player should be moving right
                 {
+                    if (playerPos > playerMaxPos - playerWidth)  //if player is ahead of or at the maximum right
+                    {
+                        playerPos = playerMaxPos - playerWidth; //player should be at the end of the maximum width
+                        playerSpeedMult = 0;    //player does not move
+                    }
                     playerSpeedMult = 1; //player moves away from left
                 }
                 if  (keyTogDir == 0) //if player should not be moving
@@ -159,7 +185,7 @@ namespace _3dDodgeball
                 }
 
                 playerMove = (playerSpeed * playerSpeedMult);   //player move speed is equal to the base player speed times the player speed multiplication value
-                playerPos += (playerMove / 100);    //convert player move speed from m/s to m/10ms and add it to the player position
+                playerPos += playerMove;
             }
         }
     }
