@@ -12,9 +12,9 @@ namespace _3dDodgeball
 {
     public partial class VertThrowTester : Form
     {
-        double ballX;
-        double ballY;
-        double maxDist1 = 10;
+        double ballX = 0;
+        double ballY = 2;
+        double maxDist1 = this.ClientSize.Width / 100;
         double ballVelX;
         double ballVelY;
         double ballStartY;
@@ -35,15 +35,15 @@ namespace _3dDodgeball
 
         private void btnThrow_Click(object sender, EventArgs e)
         {
-            ballY = 0;
-            ballX = 2;
+            ballY = 2;
+            ballX = 0;
             ballThrowAngle = 30;
             ballThrowSpeed = 10;
-            ballVelY = ballThrowSpeed * Math.Sin(ballThrowAngle);
-            ballVelX = ballThrowSpeed * Math.Cos(ballThrowAngle);
+            ballVelY = ballThrowSpeed * Math.Sin(ballThrowAngle * (Math.PI / 180));
+            ballVelX = ballThrowSpeed * Math.Cos(ballThrowAngle * (Math.PI / 180));
             
             System.Windows.Forms.Timer updateTimer = new System.Windows.Forms.Timer();    //make timer
-            updateTimer.Interval = 1000;    //update every 10 ms (must be nice number for proper physics
+            updateTimer.Interval = 10;    //update every 10 ms (must be nice number for proper physics
             updateTimer.Tick += testTimer;   //run gameTimer (in GameUpd) for each timer tick
             updateTimer.Start();
         }
@@ -53,7 +53,10 @@ namespace _3dDodgeball
             //testnum++;
             //btnThrow.Text = Convert.ToString(testnum);
 
-            //if (ballY <= 0) return;
+            if (ballY <= 0 | ballX >= maxDist1)
+            {
+                timer.Stop();
+            }
 
             ballVelY += gravAccel / 100;
             ballY += ballVelY / 100;
@@ -70,7 +73,7 @@ namespace _3dDodgeball
             Graphics g = e.Graphics;
 
             e.Graphics.FillRectangle(Brushes.Aqua, Convert.ToSingle(ballX), 10, 10, 10);
-            e.Graphics.FillEllipse(Brushes.Red, Convert.ToSingle(ballX - ballDiameter * 0.5 * 100), Convert.ToSingle((ballY - ballDiameter * 0.5) * -100 + this.ClientSize.Height), Convert.ToSingle(ballDiameter) * 100, Convert.ToSingle(ballDiameter) * 100);
+            e.Graphics.FillEllipse(Brushes.Red, Convert.ToSingle(ballX - (ballDiameter * 0.5)) * 100, this.ClientSize.Height - Convert.ToSingle(ballY - (ballDiameter * 0.5)) * 100, Convert.ToSingle(ballDiameter) * 100, Convert.ToSingle(ballDiameter) * 100);
         }
     }
 }
