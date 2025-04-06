@@ -14,7 +14,7 @@ namespace _3dDodgeball
     {
         double ballX = 0;
         double ballY = 2;
-        double maxDist1 = this.ClientSize.Width / 100;
+        double maxDist1;
         double ballVelX;
         double ballVelY;
         double ballStartY;
@@ -29,6 +29,7 @@ namespace _3dDodgeball
         public VertThrowTester()
         {
             InitializeComponent();
+            maxDist1 = 10;
             this.DoubleBuffered = true;
             this.Paint += drawBall;
         }
@@ -55,7 +56,7 @@ namespace _3dDodgeball
 
             if (ballY <= 0 | ballX >= maxDist1)
             {
-                timer.Stop();
+                return;
             }
 
             ballVelY += gravAccel / 100;

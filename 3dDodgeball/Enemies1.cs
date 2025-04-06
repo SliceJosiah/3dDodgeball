@@ -35,6 +35,9 @@ namespace _3dDodgeball
         double[] fullStateTime; //full number of seconds left for enemy status change after modifiers are applied
         double[] playerDistancePerc;    //percentage distance from player ( (enemyPos-playerPos)/enemyPosMax )
 
+        //variables for basic colours
+        public string[] enemyColour;
+
         Random random = new Random(Guid.NewGuid().GetHashCode());   //found this code on stackoverflow for a decent random seed generator, uses the hash code for a new guid integer as a seed
 
         public void enemyGen()
@@ -48,6 +51,14 @@ namespace _3dDodgeball
             fullStateTime = new double[enemyCount];
             throwAngleHor = new double[enemyCount];
             throwAngleVert = new double[enemyCount];
+
+            enemyColour = new string[enemyCount];
+            enemyColour[0] = "Red";
+            enemyColour[1] = "Blue";
+            enemyColour[2] = "Green";
+            enemyColour[3] = "Yellow";
+            enemyColour[4] = "Magenta";
+
 
             for (int i = 0; i < enemyCount; i++)    //for each enemy (of a number which is determined by enemyCount)
             {

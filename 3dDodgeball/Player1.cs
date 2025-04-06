@@ -8,7 +8,6 @@ namespace _3dDodgeball
 {
     internal class Player1
     {
-        Game2 game2 = new Game2();
         Physics1 physics1 = new Physics1();
 
         //variables for player properties
