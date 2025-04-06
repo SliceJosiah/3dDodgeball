@@ -36,7 +36,7 @@ namespace _3dDodgeball
         int parryState;    //0 = not parrying, 1 = not parrying, but key is down (seperate to prevent spamming), 2 = parrying, 3 = disabled
         double parryTimer = 0;  //universal timer used for parrying times
 
-        bool[] keyDown; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl, 5 = z
+        bool[] keyDown = new bool[108]; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl, 5 = z
         public void inputKey(object sender, KeyEventArgs e)
         {
             keyNum++;   //add key to keynum
