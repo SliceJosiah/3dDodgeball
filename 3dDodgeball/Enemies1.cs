@@ -19,7 +19,7 @@ namespace _3dDodgeball
         public double[] enemyPos;   //enemy positions (horizontal position)
         public double[] enemyWidth;    //hitbox widths (shoulder widths) of enemies
         public double[] enemyHeight;   //enemy heights, change where enemies throw balls from
-        public bool[] lefthanded;  //left handed or not, changes where enemies throw balls from
+        //public bool[] lefthanded;  //left handed or not, changes where enemies throw balls from
 
         //variables for enemy generation
         public int enemyCount { get; set; }    //number of enemies
@@ -30,7 +30,7 @@ namespace _3dDodgeball
         public int[] enemyStatus;   //0 = no ball, 1 = holding ball, 2 = preparing to throw ball, 3 = throwing ball, 4 = just threw ball, 5 = hit, 6 = timeout, 7 = walking
         public double[] throwAngleHor; //horizontal throwing angle (in degrees)
         public double[] throwAngleVert;    //vertical throwing angle (in degrees)
-        public double[] maxThrowSpeed; //maximum throwing speed (in m/s)
+        //public double[] maxThrowSpeed; //maximum throwing speed (in m/s)
         double[] baseStateTime;    //base random number of seconds left for enemy status to change
         double[] fullStateTime; //full number of seconds left for enemy status change after modifiers are applied
         double[] playerDistancePerc;    //percentage distance from player ( (enemyPos-playerPos)/enemyPosMax )
@@ -45,19 +45,21 @@ namespace _3dDodgeball
             enemyPos = new double[enemyCount];
             enemyWidth = new double[enemyCount];
             enemyHeight = new double[enemyCount];
-            lefthanded = new bool[enemyCount];
+            //lefthanded = new bool[enemyCount];
             enemyStatus = new int[enemyCount];
             baseStateTime = new double[enemyCount];
             fullStateTime = new double[enemyCount];
             throwAngleHor = new double[enemyCount];
             throwAngleVert = new double[enemyCount];
 
-            enemyColour = new string[enemyCount];
-            enemyColour[0] = "Red";
-            enemyColour[1] = "Blue";
-            enemyColour[2] = "Green";
-            enemyColour[3] = "Yellow";
-            enemyColour[4] = "Magenta";
+            ball = new Ball[enemyCount];
+
+            // enemyColour = new string[enemyCount];
+            // enemyColour[0] = "Red";
+            // enemyColour[1] = "Blue";
+            // enemyColour[2] = "Green";
+            // enemyColour[3] = "Yellow";
+            // enemyColour[4] = "Magenta";
 
 
             for (int i = 0; i < enemyCount; i++)    //for each enemy (of a number which is determined by enemyCount)
