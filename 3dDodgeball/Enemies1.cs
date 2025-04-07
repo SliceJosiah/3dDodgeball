@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +13,7 @@ namespace _3dDodgeball
         //variables for all enemy behaviour
         public double enemyPosLine { get; set; }    //distance between enemy position line and top of form, defined in form
         public double enemyPosMax { get; set; } //horizontal space enemies have to move, defined in form
-        public double enemyHealth { get; set; } //health level of enemies
+        //public double enemyHealth { get; set; } //health level of enemies
 
         //variables for initial enemy properties
         public double[] enemyPos;   //enemy positions (horizontal position)
