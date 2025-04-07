@@ -90,11 +90,11 @@ namespace _3dDodgeball
         {
             for (int i = 0; i < enemyCount; i++)
             {
-                if (enemyStatus[i] == 5) 
-                {
-                    baseStateTime[i] -= 0.01;
-                    continue;
-                }
+                // if (enemyStatus[i] == 5) 
+                // {
+                //     baseStateTime[i] -= 0.01;
+                //     continue;
+                // }
                 playerDistancePerc[i] = (player1.playerPos - enemyPos[i])/enemyPosMax;
                 if (enemyStatus[i] == 0)    //if enemy is idle
                 {
