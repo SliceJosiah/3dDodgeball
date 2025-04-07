@@ -32,10 +32,10 @@ namespace _3dDodgeball
         int keyTogState;    //for player state; 0 = standing, 1 = running, 2 = crouching; first pressed takes priority
 
         //integers for parrying ball
-        int parryState;    //0 = not parrying, 1 = not parrying, but key is down (seperate to prevent spamming), 2 = parrying, 3 = disabled
-        double parryTimer = 0;  //universal timer used for parrying times
+        // int parryState;    //0 = not parrying, 1 = not parrying, but key is down (seperate to prevent spamming), 2 = parrying, 3 = disabled
+        // double parryTimer = 0;  //universal timer used for parrying times
 
-        bool[] keyDown = new bool[108]; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl, 5 = z
+        bool[] keyDown = new bool[4]; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl, 5 = z
         public void inputKey(object sender, KeyEventArgs e)
         {
             keyNum++;   //add key to keynum
@@ -70,10 +70,10 @@ namespace _3dDodgeball
                     keyTogState = 2;    //player should be crouching
                 }
             }
-            if (e.KeyCode == Keys.Z)
-            {
-                keyDown[5] = true;
-            }
+            // if (e.KeyCode == Keys.Z)
+            // {
+            //     keyDown[5] = true;
+            // }
         }
 
         public void inputKeyUp(object sender, KeyEventArgs e)
@@ -135,14 +135,14 @@ namespace _3dDodgeball
                     keyTogState = 0;    //player should be standing
                 }
             }
-            if (e.KeyCode == Keys.Z)
-            {
-                keyDown[5] = false;
-                if (parryState == 1)
-                {
-                    parryState = 0;
-                }
-            }
+            // if (e.KeyCode == Keys.Z)
+            // {
+            //     keyDown[5] = false;
+            //     if (parryState == 1)
+            //     {
+            //         parryState = 0;
+            //     }
+            // }
         }
 
         public void updatePlayer ()
