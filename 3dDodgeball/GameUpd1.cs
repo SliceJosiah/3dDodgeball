@@ -8,10 +8,11 @@ namespace _3dDodgeball
 {
     internal class GameUpd1
     {
-        Player1 player1 = new Player1();
+        private Player1 player1;
         Enemies1 enemies1 = new Enemies1();
         Settings1 settings1 = new Settings1();
-        Game2 game2 = new Game2();
+        //Game2 game2 = new Game2();
+        private Game2 game2;    //define existing instance of game2
         public double courtWidth;
         public double courtLength;
         public GameUpd1()

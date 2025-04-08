@@ -12,8 +12,8 @@ namespace _3dDodgeball
 {
     public partial class Game2 : Form
     {
-        GameUpd1 gameUpd1 = new GameUpd1();
-        Player1 player1 = new Player1();
+        GameUpd1 gameUpd1 = new GameUpd1(); //define gameUpd1 for timer
+        Player1 player1 = new Player1();    //define player1 for input
         public Game2()
         {
             InitializeComponent();
@@ -30,10 +30,6 @@ namespace _3dDodgeball
             updateTimer.Interval = 10;    //update every 10 ms (must be nice number for proper physics
             updateTimer.Tick += gameUpd1.gameTimer;   //run gameTimer (in GameUpd) for each timer tick
             updateTimer.Start();
-        }
-        private void Game2_KeyUp(object sender, KeyEventArgs e)
-        {
-            
         }
     }
 }

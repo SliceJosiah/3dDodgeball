@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,8 @@ namespace _3dDodgeball
 {
     internal class Enemies1
     {
-        Player1 player1 = new Player1();
+        private Player1 player1;    //define existing player1
+        Ball ball;  //prepare ball varable for array of ball objects
 
         //variables for all enemy behaviour
         public double enemyPosLine { get; set; }    //distance between enemy position line and top of form, defined in form
@@ -32,8 +33,7 @@ namespace _3dDodgeball
         public double[] throwAngleVert;    //vertical throwing angle (in degrees)
         //public double[] maxThrowSpeed; //maximum throwing speed (in m/s)
         double[] baseStateTime;    //base random number of seconds left for enemy status to change
-        double[] fullStateTime; //full number of seconds left for enemy status change after modifiers are applied
-        double[] playerDistancePerc;    //percentage distance from player ( (enemyPos-playerPos)/enemyPosMax )
+        //double[] fullStateTime; //full number of seconds left for enemy status change after modifiers are applied
 
         //variables for basic colours
         public string[] enemyColour;
@@ -48,7 +48,7 @@ namespace _3dDodgeball
             //lefthanded = new bool[enemyCount];
             enemyStatus = new int[enemyCount];
             baseStateTime = new double[enemyCount];
-            fullStateTime = new double[enemyCount];
+            //fullStateTime = new double[enemyCount];
             throwAngleHor = new double[enemyCount];
             throwAngleVert = new double[enemyCount];
 
@@ -79,12 +79,11 @@ namespace _3dDodgeball
                     }
                     else j++;   //otherwise, advance
                 }
+                ball1[i] = new Ball1();
                 enemyHeight[i] = enemyWidth[i] * 4.5;  //enemy height is enemy width times 4.5
-                baseStateTime[i] = random.NextDouble() * (5 - 10) + 10;   //generate initial baseline time, between 5 and 10 seconds (longer than usual to give the player time to react)
+                baseStateTime[i] = random.NextDouble() * (10 - 5) + 5;   //generate initial baseline time, between 5 and 10 seconds (longer than usual to give the player time to react)
             }
         }
-
-        
 
         public void updateEnemy()
         {
@@ -95,15 +94,23 @@ namespace _3dDodgeball
                 //     baseStateTime[i] -= 0.01;
                 //     continue;
                 // }
-                playerDistancePerc[i] = (player1.playerPos - enemyPos[i])/enemyPosMax;
+                double playerDistancePerc = Abs((enemyPos[i] - player1.playerPos)/enemyPosMax); //distance from player, out of the court length, as a positive decimal
+
                 if (enemyStatus[i] == 0)    //if enemy is idle
                 {
                     baseStateTime[i] -= 0.01;
+                    if (baseStateTime <= 0) //if state timer is over
+                    {
+                        baseStateTime = random.NextDouble() * ((8 + 2 * playerDistancePerc) - 2.5);
+                        enemyStatus[i] = 1;
+                    }
                 }
-                if (enemyStatus[i] == 1)
+                if (enemyStatus[i] == 1)    //if enemy has ball
                 {
                     baseStateTime[i] -= 0.01;
-                    throwAngleHor[i] = Math.Atan(10/(player1.playerPos - enemyPos[i]));
+                }
+                if (enemyStatus[i] == 2)
+                {
 
                 }
             }

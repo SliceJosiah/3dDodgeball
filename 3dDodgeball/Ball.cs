@@ -15,6 +15,9 @@ namespace _3dDodgeball
         double ballXvel;
         double ballYvel;
         double ballZvel;
-        
+        private void ballUpd()
+        {
+            
+        }
     }
 }
