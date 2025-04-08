@@ -10,16 +10,16 @@ namespace _3dDodgeball
     {
         //variables for player properties
         public double playerPos {get; set;}    //player position on x axis (distance from left in m)
-        public double playerMaxPos;  //maximum distance from right side (in m) (should be same as enemyMaxPos)
+        double playerMaxPos;  //maximum distance from right side (in m) (should be same as enemyMaxPos)
         public double playerSpeed;  //determines the baseline speed (in m/s) of the player movement
         public double playerWidth;  //hitbox width (shoulder width) of player
         public double playerMiddle; //x axis position of the centre of the player, to make enemy throw code nicer
 
         //variables for player state
-        public double playerSpeedMult = 0;   //number to multiply playerSpeed by for playerMove
+        double playerSpeedMult = 0;   //number to multiply playerSpeed by for playerMove
         public double playerMove = 0;   //how fast the player is actually moving (in m/s)
         public int playerStatus = 0;    //0 = standing, 1 = running, 2 = crouching, 3 = hit, 4 = out
-        public double playerHealth = 1; //percentage player health (in deciman)
+        public double playerHealth = 1; //percentage player health (in decimal)
 
         //variables for input handling
         public int keyTopClass;  //determines top class of action key being pressed
@@ -28,10 +28,13 @@ namespace _3dDodgeball
         //integers for defining the effect of keys based on input order (for avoiding overlap and queuing)
         int keyTogDir;  //for move direction; 0 = idle, 1 = left, 2 = right; last pressed takes priority
         int keyTogState;    //for player state; 0 = standing, 1 = running, 2 = crouching; first pressed takes priority
+        double hitTimer1;
 
         //integers for parrying ball
         // int parryState;    //0 = not parrying, 1 = not parrying, but key is down (seperate to prevent spamming), 2 = parrying, 3 = disabled
         // double parryTimer = 0;  //universal timer used for parrying times
+
+        public int points;
 
         bool[] keyDown = new bool[4]; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl, 5 = z
         public void inputKey(object sender, KeyEventArgs e)
