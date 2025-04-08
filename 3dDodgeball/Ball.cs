@@ -9,6 +9,7 @@ namespace _3dDodgeball
     internal class Ball
     {
         //ball location arrays. 0 is always the player ball while balls afterwards
+        bool thrown = false;
         double ballX;
         double ballY;
         double ballZ;

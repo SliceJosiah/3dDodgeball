@@ -8,14 +8,12 @@ namespace _3dDodgeball
 {
     internal class Player1
     {
-        Physics1 physics1 = new Physics1();
-
         //variables for player properties
         public double playerPos {get; set;}    //player position on x axis (distance from left in m)
         public double playerMaxPos;  //maximum distance from right side (in m) (should be same as enemyMaxPos)
         public double playerSpeed;  //determines the baseline speed (in m/s) of the player movement
         public double playerWidth;  //hitbox width (shoulder width) of player
-        public double playerMiddle; //x axis position of the centre of the player
+        public double playerMiddle; //x axis position of the centre of the player, to make enemy throw code nicer
 
         //variables for player state
         public double playerSpeedMult = 0;   //number to multiply playerSpeed by for playerMove
@@ -147,6 +145,7 @@ namespace _3dDodgeball
 
         public void updatePlayer ()
         {
+            playerMiddle = playerPos - (playerWidth / 2);
             if (playerStatus < 3)   //if player is not hit or out
             {
                 playerStatus = keyTogState;
