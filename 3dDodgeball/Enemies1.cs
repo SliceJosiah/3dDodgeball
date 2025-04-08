@@ -9,7 +9,7 @@ namespace _3dDodgeball
     internal class Enemies1
     {
         private Player1 player1;    //define existing player1
-        Ball ball;  //prepare ball varable for array of ball objects
+        Ball[] ball;  //prepare ball varable for array of ball objects
 
         //variables for all enemy behaviour
         public double enemyPosLine { get; set; }    //distance between enemy position line and top of form, defined in form
@@ -29,8 +29,6 @@ namespace _3dDodgeball
 
         //variables for enemy actions
         public int[] enemyStatus;   //0 = no ball, 1 = holding ball, 2 = preparing to throw ball, 3 = throwing ball, 4 = just threw ball, 5 = hit, 6 = timeout, 7 = walking
-        public double[] throwAngleHor; //horizontal throwing angle (in degrees)
-        public double[] throwAngleVert;    //vertical throwing angle (in degrees)
         //public double[] maxThrowSpeed; //maximum throwing speed (in m/s)
         double[] baseStateTime;    //base random number of seconds left for enemy status to change
         //double[] fullStateTime; //full number of seconds left for enemy status change after modifiers are applied
@@ -49,8 +47,6 @@ namespace _3dDodgeball
             enemyStatus = new int[enemyCount];
             baseStateTime = new double[enemyCount];
             //fullStateTime = new double[enemyCount];
-            throwAngleHor = new double[enemyCount];
-            throwAngleVert = new double[enemyCount];
 
             ball = new Ball[enemyCount];
 
@@ -79,7 +75,7 @@ namespace _3dDodgeball
                     }
                     else j++;   //otherwise, advance
                 }
-                ball1[i] = new Ball1();
+                ball[i] = new Ball();
                 enemyHeight[i] = enemyWidth[i] * 4.5;  //enemy height is enemy width times 4.5
                 baseStateTime[i] = random.NextDouble() * (10 - 5) + 5;   //generate initial baseline time, between 5 and 10 seconds (longer than usual to give the player time to react)
             }
@@ -94,23 +90,38 @@ namespace _3dDodgeball
                 //     baseStateTime[i] -= 0.01;
                 //     continue;
                 // }
-                double playerDistancePerc = Abs((enemyPos[i] - player1.playerPos)/enemyPosMax); //distance from player, out of the court length, as a positive decimal
+                double playerDistancePerc = Math.Abs((enemyPos[i] - player1.playerPos)/enemyPosMax); //distance from player, out of the court length, as a positive decimal
 
                 if (enemyStatus[i] == 0)    //if enemy is idle
                 {
                     baseStateTime[i] -= 0.01;
-                    if (baseStateTime <= 0) //if state timer is over
+                    if (baseStateTime[i] <= 0) //if state timer is over
                     {
-                        baseStateTime = random.NextDouble() * ((8 + 2 * playerDistancePerc) - 2.5);
-                        enemyStatus[i] = 1;
+                        baseStateTime[i] = random.NextDouble() * (8 - 2) + 2 + playerDistancePerc * 2;  //generate random time until enemy starts preparing to throw the ball, between 2 and 8 seconds, plus the enemy distance from the player times two. this makes closer enemies less predictable
+                        enemyStatus[i] = 1; //status = holding ball
                     }
                 }
                 if (enemyStatus[i] == 1)    //if enemy has ball
                 {
                     baseStateTime[i] -= 0.01;
+                    if (baseStateTime[i] <= 0) //if state timer is over
+                    {
+                        baseStateTime[i] = random.NextDouble() * (1 - 0.2) + 0.5 + playerDistancePerc * 2;  //generate random time until enemy throws ball, between 0.2 and 1 seconds, plus the enemy distance from the player times two
+                        double throwAngleHor = Math.Atan((enemyPos[i] - (player1.playerMiddle + player1.playerMove)) / 10) - (2.5 * (Math.PI / 180)) + random.NextDouble() * 5;    //generate throwing angle in radians, based on the position the player will be at in 1 second
+                        enemyStatus[i] = 2;
+                    }
                 }
-                if (enemyStatus[i] == 2)
+                if (enemyStatus[i] == 2)    //if enemy is preparing to throw ball
                 {
+                    baseStateTime[i] -= 0.01;
+                    if (baseStateTime[i] <= 0) //if state timer is over
+                    {
+                        
+                    }
+                    else
+                    {
+                        
+                    }
 
                 }
             }
