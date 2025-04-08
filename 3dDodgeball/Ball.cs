@@ -45,6 +45,7 @@ namespace _3dDodgeball
                     if (ballX > player1.playerPos - ballRadius &&  ballX < player1.playerPos + player1.playerWidth + ballRadius)    //if the ball would't hit the player, accomodating for the radius of the ball
                     {
                         player1.playerHealth -= hitStrength;
+                        
                     }
                 }
             }
