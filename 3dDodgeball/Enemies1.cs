@@ -38,6 +38,11 @@ namespace _3dDodgeball
 
         Random random = new Random(Guid.NewGuid().GetHashCode());   //found this code on stackoverflow for a decent random seed generator, uses the hash code for a new guid integer as a seed
 
+        public Enemies1(Player1 player1b)
+        {
+            player1 = player1b;
+        }
+
         public void enemyGen()
         {
             enemyPos = new double[GameUpd1.enemyCount];

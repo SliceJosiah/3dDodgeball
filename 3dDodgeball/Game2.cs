@@ -12,13 +12,18 @@ namespace _3dDodgeball
 {
     public partial class Game2 : Form
     {
-        Player1 player1 = new Player1();    //define player1 for input
-        GameUpd1 gameUpd1 = new GameUpd1(); //define gameUpd1 for timer
-        Render1 render1 = new Render1();
+        private Player1 player1;    //define variable for player1 object
+        private GameUpd1 gameupd1;  //define variable
+        private Render1 render1;    //define variable
         public Game2()
         {
             InitializeComponent();
-            
+
+            player1 = new Player1();    //set variable player1 to new instance of player1
+            gameupd1 = new GameUpd1(player1); //set variable to new instance, and pass instance of player1
+            render1 = new Render1();    //set variable
+
+
             this.DoubleBuffered = true; //double buffer reduce flicker
             // Enemies1 enemies1 = new Enemies1();
             // enemies1.enemyPosLine = 350;    //how many pixels down is enemy position line
@@ -30,7 +35,7 @@ namespace _3dDodgeball
 
             System.Windows.Forms.Timer updateTimer = new System.Windows.Forms.Timer();    //make timer
             updateTimer.Interval = 10;    //update every 10 ms (must be nice number for proper physics
-            updateTimer.Tick += gameUpd1.gameTimer;   //run gameTimer (in GameUpd) for each timer tick
+            updateTimer.Tick += gameupd1.gameTimer;   //run gameTimer (in GameUpd) for each timer tick
             updateTimer.Start();
         }
     }
