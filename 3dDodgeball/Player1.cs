@@ -28,13 +28,13 @@ namespace _3dDodgeball
         //integers for defining the effect of keys based on input order (for avoiding overlap and queuing)
         int keyTogDir;  //for move direction; 0 = idle, 1 = left, 2 = right; last pressed takes priority
         int keyTogState;    //for player state; 0 = standing, 1 = running, 2 = crouching; first pressed takes priority
-        double hitTimer1;
+        public double hitTimer1;   //for timing the length of a hit timeout
 
         //integers for parrying ball
         // int parryState;    //0 = not parrying, 1 = not parrying, but key is down (seperate to prevent spamming), 2 = parrying, 3 = disabled
         // double parryTimer = 0;  //universal timer used for parrying times
 
-        public int points;
+        public double points;
 
         bool[] keyDown = new bool[4]; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl, 5 = z
         public void inputKey(object sender, KeyEventArgs e)
@@ -148,10 +148,16 @@ namespace _3dDodgeball
 
         public void updatePlayer ()
         {
+            if (playerStatus == 4)
+            {
+                return; //do nothing, because game is over
+            }
+
             playerMiddle = playerPos - (playerWidth / 2);
             if (playerStatus < 3)   //if player is not hit or out
             {
                 playerStatus = keyTogState;
+                points += 0.01;
 
                 //movement
                 if (keyTogDir == 1) //if player should be moving left
@@ -187,6 +193,14 @@ namespace _3dDodgeball
 
                 playerMove = (playerSpeed * playerSpeedMult);   //player move speed is equal to the base player speed times the player speed multiplication value
                 playerPos += playerMove;
+            }
+            else if (playerStatus == 3)
+            {
+                hitTimer1 -= 0.01;
+                if (hitTimer1 <= 0)
+                {
+                    playerStatus = 0;
+                }
             }
         }
     }
