@@ -25,7 +25,9 @@ namespace _3dDodgeball
 
         public void gameTimer(object sender, EventArgs e)
         {
-            
+            player1.updatePlayer();
+            enemies1.updateEnemy();
+            game2.Invalidate();
         }
     }
 }

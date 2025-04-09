@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace _3dDodgeball
 {
-    internal class Class1
+    internal class Render1
     {
-        void RenderGraphics()
+        public void RenderGraphics(object sender, PaintEventArgs e)
         {
 
         }

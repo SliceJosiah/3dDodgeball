@@ -12,8 +12,9 @@ namespace _3dDodgeball
 {
     public partial class Game2 : Form
     {
-        GameUpd1 gameUpd1 = new GameUpd1(); //define gameUpd1 for timer
         Player1 player1 = new Player1();    //define player1 for input
+        GameUpd1 gameUpd1 = new GameUpd1(); //define gameUpd1 for timer
+        Render1 render1 = new Render1();
         public Game2()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace _3dDodgeball
             // enemies1.enemyCount = 5;
             this.KeyDown += player1.inputKey;
             this.KeyUp += player1.inputKeyUp;
+            this.Paint += render1.RenderGraphics;
 
             System.Windows.Forms.Timer updateTimer = new System.Windows.Forms.Timer();    //make timer
             updateTimer.Interval = 10;    //update every 10 ms (must be nice number for proper physics
