@@ -16,9 +16,9 @@ namespace _3dDodgeball
         public EnemyPosTest1()
         {
             InitializeComponent();
-            enemies1.enemyPosLine = 350;    //how many pixels down is enemy position line
-            enemies1.enemyPosMax = 5;   //length of the max width enemies can travel in metres
-            enemies1.enemyCount = 5;
+            //enemies1.enemyPosLine = 350;    //how many pixels down is enemy position line
+            //enemies1.enemyPosMax = 5;   //length of the max width enemies can travel in metres
+            //enemies1.enemyCount = 5;
             
         }
 
