@@ -20,7 +20,7 @@ namespace _3dDodgeball
             InitializeComponent();
 
             player1 = new Player1();    //set variable player1 to new instance of player1
-            gameupd1 = new GameUpd1(player1); //set variable to new instance, and pass instance of player1
+            gameupd1 = new GameUpd1(player1, this); //set variable to new instance, and pass instance of player1
             render1 = new Render1();    //set variable
 
 

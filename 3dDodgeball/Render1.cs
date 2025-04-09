@@ -10,7 +10,7 @@ namespace _3dDodgeball
     {
         public void RenderGraphics(object sender, PaintEventArgs e)
         {
-
+            Graphics g = e.Graphics;
         }
     }
 }
