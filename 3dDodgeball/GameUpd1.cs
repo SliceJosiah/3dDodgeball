@@ -16,11 +16,11 @@ namespace _3dDodgeball
         public static double courtWidth = 5;
         public static double courtLength = 10;
         public static int enemyCount = 5;
-        public GameUpd1(Player1 player1a, Game2 game2a)
+        public GameUpd1(Player1 player1a, Enemies1 enemies1a, Game2 game2a)
         {
             game2 = game2a; //set variable
             player1 = player1a; //set variable
-            enemies1 = new Enemies1(player1);
+            enemies1 = enemies1a;
             enemies1.enemyGen();
             //enemies1.enemyPosLine = 350;    //how many pixels down is enemy position line
             //enemies1.enemyPosMax = 5;   //length of the max width enemies can travel in metres

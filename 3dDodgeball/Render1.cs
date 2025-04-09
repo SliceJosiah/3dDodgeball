@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace _3dDodgeball
 {
-    internal class Render1
+    public class Render1
     {
+        static readonly double vMult = Math.Sqrt(0.5);
+        public Render1(Player1 player1d, Enemies1 enemies1b)
+        {
+
+        }
         public void RenderGraphics(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
+
+
         }
     }
 }

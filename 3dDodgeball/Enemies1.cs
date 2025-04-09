@@ -9,7 +9,7 @@ namespace _3dDodgeball
     internal class Enemies1
     {
         private Player1 player1;    //define player1 variable
-        Ball[] ball;  //prepare ball varable for array of ball objects
+        public Ball[] ball;  //prepare ball varable for array of ball objects
 
         //variables for all enemy behaviour
         //public double enemyPosLine { get; set; }    //distance between enemy position line and top of form, defined in form
@@ -34,7 +34,7 @@ namespace _3dDodgeball
         //double[] fullStateTime; //full number of seconds left for enemy status change after modifiers are applied
 
         //variables for basic colours
-        public string[] enemyColour;
+        //public string[] enemyColour;
 
         Random random = new Random(Guid.NewGuid().GetHashCode());   //found this code on stackoverflow for a decent random seed generator, uses the hash code for a new guid integer as a seed
 
