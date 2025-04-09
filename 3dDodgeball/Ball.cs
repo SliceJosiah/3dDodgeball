@@ -22,6 +22,11 @@ namespace _3dDodgeball
         double dropTime;
         //const double gravity = -9.8;
 
+        public Ball(Player1 player1c)
+        {
+            player1 = player1c;
+        }
+
         public void prepareBall(double throwAngleHor, double ballSpeed, double ballTime, double startX)
         {
             ballX = startX;

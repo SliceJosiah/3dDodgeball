@@ -8,7 +8,7 @@ namespace _3dDodgeball
 {
     internal class Enemies1
     {
-        private Player1 player1;    //define existing player1
+        private Player1 player1;    //define player1 variable
         Ball[] ball;  //prepare ball varable for array of ball objects
 
         //variables for all enemy behaviour
@@ -40,7 +40,7 @@ namespace _3dDodgeball
 
         public Enemies1(Player1 player1b)
         {
-            player1 = player1b;
+            player1 = player1b; //set variable
         }
 
         public void enemyGen()
@@ -80,7 +80,7 @@ namespace _3dDodgeball
                     }
                     else j++;   //otherwise, advance
                 }
-                ball[i] = new Ball();
+                ball[i] = new Ball(player1);
                 enemyHeight[i] = enemyWidth[i] * 4.5;  //enemy height is enemy width times 4.5
                 baseStateTime[i] = random.NextDouble() * (10 - 5) + 5;   //generate initial baseline time, between 5 and 10 seconds (longer than usual to give the player time to react)
             }
