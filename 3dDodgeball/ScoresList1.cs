@@ -12,9 +12,12 @@ namespace _3dDodgeball
 {
     public partial class ScoresList1 : Form
     {
-        public ScoresList1()
+
+        List<Scores1> scores1 = new List<Scores1>();
+        public ScoresList1(string username, int score)
         {
             InitializeComponent();
+            lblPoints.Text = "You got" + score.ToString();
         }
     }
 }

@@ -9,10 +9,11 @@ namespace _3dDodgeball
     internal class Player1
     {
         //variables for player properties
-        public double playerPos {get; set;}    //player position on x axis (distance from left in m)
-        double playerMaxPos;  //maximum distance from right side (in m) (should be same as enemyMaxPos)
+        public double playerPos;    //player position on x axis (distance from left in m)
+        //double playerMaxPos;  //maximum distance from right side (in m) (should be same as enemyMaxPos)
         public double playerSpeed;  //determines the baseline speed (in m/s) of the player movement
-        public double playerWidth;  //hitbox width (shoulder width) of player
+        public double playerWidth = 0.4;  //hitbox width (shoulder width) of player
+        public double playerHeight;
         public double playerMiddle; //x axis position of the centre of the player, to make enemy throw code nicer
 
         //variables for player state
@@ -26,7 +27,7 @@ namespace _3dDodgeball
         public int keyNum;  //number of keys being pressed
 
         //integers for defining the effect of keys based on input order (for avoiding overlap and queuing)
-        int keyTogDir;  //for move direction; 0 = idle, 1 = left, 2 = right; last pressed takes priority
+        public int keyTogDir;  //for move direction; 0 = idle, 1 = left, 2 = right; last pressed takes priority
         int keyTogState;    //for player state; 0 = standing, 1 = running, 2 = crouching; first pressed takes priority
         public double hitTimer1;   //for timing the length of a hit timeout
 
@@ -36,7 +37,13 @@ namespace _3dDodgeball
 
         public double points;
 
-        bool[] keyDown = new bool[4]; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl, 5 = z
+        public bool[] keyDown = new bool[4]; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl, 5 = z
+
+        public Player1()
+        {
+            playerHeight = playerWidth * 4.5;  //player height is player width times 4.5
+            playerPos = (GameUpd1.courtWidth) / 2 - (playerWidth / 2);
+        }
         public void inputKey(object sender, KeyEventArgs e)
         {
             keyNum++;   //add key to keynum
@@ -50,7 +57,7 @@ namespace _3dDodgeball
                 keyDown[1] = true;
                 keyTogDir = 1;
             }
-            if (e.KeyCode == Keys.Right && playerPos <= playerMaxPos - playerWidth)
+            if (e.KeyCode == Keys.Right && playerPos <= GameUpd1.courtWidth - playerWidth)
             {
                 keyDown[2] = true;
                 keyTogDir = 2;
@@ -91,7 +98,7 @@ namespace _3dDodgeball
             if (e.KeyCode == Keys.Left && playerPos >= 0)
             {
                 keyDown[1] = false;
-                if (keyDown[2] = true)  //if right key is also being pressed
+                if (keyDown[2] == true)  //if right key is also being pressed
                 {
                     keyTogDir = 2;   //player direction should be right
                 }
@@ -100,10 +107,10 @@ namespace _3dDodgeball
                     keyTogDir = 0;   //player should be idle
                 }
             }
-            if (e.KeyCode == Keys.Right && playerPos <= playerMaxPos - playerWidth)
+            if (e.KeyCode == Keys.Right && playerPos <= GameUpd1.courtWidth - playerWidth)
             {
                 keyDown[2] = false;
-                if (keyDown[1] = true)  //if right key is also being pressed
+                if (keyDown[1] == true)  //if right key is also being pressed
                 {
                     keyTogDir = 1;   //player direction should be left
                 }
@@ -115,7 +122,7 @@ namespace _3dDodgeball
             if (e.KeyCode == Keys.LShiftKey)
             {
                 keyDown[3] = false;
-                if (keyDown[4] = true)  //if lctrl key is also being pressed
+                if (keyDown[4] == true)  //if lctrl key is also being pressed
                 {
                     keyTogState = 2;    //player should be crouching
                 }
@@ -127,7 +134,7 @@ namespace _3dDodgeball
             if (e.KeyCode == Keys.LControlKey)
             {
                 keyDown[4] = false;
-                if (keyDown[3] = true)  //if lshift key is also being pressed
+                if (keyDown[3] == true)  //if lshift key is also being pressed
                 {
                     keyTogState = 1;    //player should be running
                 }
@@ -171,9 +178,9 @@ namespace _3dDodgeball
                 }
                 if (keyTogDir == 2)  //if player should be moving right
                 {
-                    if (playerPos > playerMaxPos - playerWidth)  //if player is ahead of or at the maximum right
+                    if (playerPos >= GameUpd1.courtWidth - playerWidth)  //if player is ahead of or at the maximum right
                     {
-                        playerPos = playerMaxPos - playerWidth; //player should be at the end of the maximum width
+                        playerPos = GameUpd1.courtWidth - playerWidth; //player should be at the end of the maximum width
                         playerSpeedMult = 0;    //player does not move
                     }
                     playerSpeedMult = 1; //player moves away from left

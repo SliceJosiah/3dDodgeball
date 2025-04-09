@@ -16,7 +16,7 @@ namespace _3dDodgeball
         public static double courtWidth = 5;
         public static double courtLength = 10;
         public static int enemyCount = 5;
-        public GameUpd1(Player1 player1a, Enemies1 enemies1a, Game2 game2a)
+        public GameUpd1(Player1 player1a, Enemies1 enemies1a, Game2 game2a, string usernamea)
         {
             game2 = game2a; //set variable
             player1 = player1a; //set variable
@@ -28,9 +28,20 @@ namespace _3dDodgeball
 
         public void gameTimer(object sender, EventArgs e)
         {
-            player1.updatePlayer();
-            enemies1.updateEnemy();
-            game2.Invalidate();
+            if (player1.playerStatus != 4)
+            {
+                player1.updatePlayer();
+                enemies1.updateEnemy();
+                game2.Invalidate();
+                game2.lblPlayerPos.Text = player1.playerPos.ToString();
+                game2.lblPlayerMultPos.Text = player1.playerSpeed.ToString();
+                game2.lblKeyTogDir.Text = player1.keyTogDir.ToString();
+                game2.lblRKeyDown.Text = player1.keyDown[2].ToString();
+            }
+            else
+            {
+                game2.Visible = false;
+            }
         }
     }
 }

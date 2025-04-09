@@ -28,7 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
+            lblPlayerPos = new Label();
+            lblPlayerMultPos = new Label();
+            lblKeyTogDir = new Label();
+            lblRKeyDown = new Label();
             SuspendLayout();
+            // 
+            // lblPlayerPos
+            // 
+            lblPlayerPos.AutoSize = true;
+            lblPlayerPos.Location = new Point(12, 9);
+            lblPlayerPos.Name = "lblPlayerPos";
+            lblPlayerPos.Size = new Size(38, 15);
+            lblPlayerPos.TabIndex = 0;
+            lblPlayerPos.Text = "label1";
+            // 
+            // lblPlayerMultPos
+            // 
+            lblPlayerMultPos.AutoSize = true;
+            lblPlayerMultPos.Location = new Point(12, 24);
+            lblPlayerMultPos.Name = "lblPlayerMultPos";
+            lblPlayerMultPos.Size = new Size(38, 15);
+            lblPlayerMultPos.TabIndex = 1;
+            lblPlayerMultPos.Text = "label1";
+            // 
+            // lblKeyTogDir
+            // 
+            lblKeyTogDir.AutoSize = true;
+            lblKeyTogDir.Location = new Point(12, 39);
+            lblKeyTogDir.Name = "lblKeyTogDir";
+            lblKeyTogDir.Size = new Size(38, 15);
+            lblKeyTogDir.TabIndex = 2;
+            lblKeyTogDir.Text = "label1";
+            // 
+            // lblRKeyDown
+            // 
+            lblRKeyDown.AutoSize = true;
+            lblRKeyDown.Location = new Point(12, 54);
+            lblRKeyDown.Name = "lblRKeyDown";
+            lblRKeyDown.Size = new Size(38, 15);
+            lblRKeyDown.TabIndex = 3;
+            lblRKeyDown.Text = "label1";
             // 
             // Game2
             // 
@@ -36,13 +76,22 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Bisque;
             ClientSize = new Size(484, 811);
+            Controls.Add(lblRKeyDown);
+            Controls.Add(lblKeyTogDir);
+            Controls.Add(lblPlayerMultPos);
+            Controls.Add(lblPlayerPos);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "Game2";
             Text = "Game2";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+        public Label lblPlayerPos;
+        public Label lblPlayerMultPos;
+        public Label lblKeyTogDir;
+        public Label lblRKeyDown;
     }
 }

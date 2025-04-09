@@ -10,12 +10,12 @@ namespace _3dDodgeball
     {
         public string Name { get; set; }
         public int Score { get; set; }
-        public double Time { get; set; }
+        //public double Time { get; set; }
         public Scores1(string name, int score, double time)
         {
             Name = name;
             Score = score;
-            Time = time;
+            //Time = time;
         }
     }
 }
