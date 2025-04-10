@@ -17,7 +17,7 @@ namespace _3dDodgeball
         public double playerMiddle; //x axis position of the centre of the player, to make enemy throw code nicer
 
         //variables for player state
-        double playerSpeedMult = 0;   //number to multiply playerSpeed by for playerMove
+        public double playerSpeedMult = 0;   //number to multiply playerSpeed by for playerMove
         public double playerMove = 0;   //how fast the player is actually moving (in m/s)
         public int playerStatus = 0;    //0 = standing, 1 = running, 2 = crouching, 3 = hit, 4 = out
         public double playerHealth = 1; //percentage player health (in decimal)
