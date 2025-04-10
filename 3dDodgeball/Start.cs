@@ -47,11 +47,11 @@ namespace _3dDodgeball
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            string username = "testerman";
+            string username = "foobar";
             int points = 69420;
             this.Visible = false;
-            Game2 game2 = new Game2(username);
-            game2.Show();
+            ScoresList1 scoresList1 = new ScoresList1(username, points);
+            scoresList1.Show();
         }
     }
 }

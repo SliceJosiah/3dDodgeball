@@ -11,7 +11,7 @@ namespace _3dDodgeball
         //variables for player properties
         public double playerPos;    //player position on x axis (distance from left in m)
         //double playerMaxPos;  //maximum distance from right side (in m) (should be same as enemyMaxPos)
-        public double playerSpeed;  //determines the baseline speed (in m/s) of the player movement
+        public double playerSpeed = 5;  //determines the baseline speed (in m/s) of the player movement
         public double playerWidth = 0.4;  //hitbox width (shoulder width) of player
         public double playerHeight;
         public double playerMiddle; //x axis position of the centre of the player, to make enemy throw code nicer
@@ -193,12 +193,12 @@ namespace _3dDodgeball
                 {
                     playerSpeedMult *= 2;    //player moves at twice the speed
                 }
-                if (playerStatus == 2)   //if player is crouching
-                {
-                    playerSpeedMult *= 0.25; //player moves at a quarter of the speed
-                }
+                //if (playerStatus == 2)   //if player is crouching
+                //{
+                //    playerSpeedMult *= 0.25; //player moves at a quarter of the speed
+                //}
 
-                playerMove = (playerSpeed * playerSpeedMult);   //player move speed is equal to the base player speed times the player speed multiplication value
+                playerMove = ((playerSpeed / 100) * playerSpeedMult);   //player move speed is equal to the base player speed times the player speed multiplication value
                 playerPos += playerMove;
             }
             else if (playerStatus == 3)

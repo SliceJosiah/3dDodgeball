@@ -70,6 +70,7 @@
             btnRestart.TabIndex = 3;
             btnRestart.Text = "Restart";
             btnRestart.UseVisualStyleBackColor = true;
+            btnRestart.Click += btnRestart_Click;
             // 
             // btn
             // 
@@ -79,6 +80,7 @@
             btn.TabIndex = 4;
             btn.Text = "Exit";
             btn.UseVisualStyleBackColor = true;
+            btn.Click += btn_Click;
             // 
             // ScoresList1
             // 
