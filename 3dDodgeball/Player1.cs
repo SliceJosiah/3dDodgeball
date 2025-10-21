@@ -37,7 +37,7 @@ namespace _3dDodgeball
 
         public double points;
 
-        public bool[] keyDown = new bool[4]; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl, 5 = z
+        public bool[] keyDown = new bool[4]; //is key down; 0 = enter, 1 = left, 2 = right, 3 = lshift, 4 = lctrl
 
         public Player1()
         {
@@ -52,12 +52,12 @@ namespace _3dDodgeball
             {
                 keyDown[0] = true;
             }
-            if (e.KeyCode == Keys.Left && playerPos >= 0)
+            if (e.KeyCode == Keys.Left)
             {
                 keyDown[1] = true;
                 keyTogDir = 1;
             }
-            if (e.KeyCode == Keys.Right && playerPos <= GameUpd1.courtWidth - playerWidth)
+            if (e.KeyCode == Keys.Right)
             {
                 keyDown[2] = true;
                 keyTogDir = 2;
@@ -160,7 +160,7 @@ namespace _3dDodgeball
                 return; //do nothing, because game is over
             }
 
-            playerMiddle = playerPos - (playerWidth / 2);
+            playerMiddle = playerPos + (playerWidth / 2);
             if (playerStatus < 3)   //if player is not hit or out
             {
                 playerStatus = keyTogState;
@@ -174,7 +174,10 @@ namespace _3dDodgeball
                         playerPos = 0;  //player should be at 0
                         playerSpeedMult = 0;    //player does not move
                     }
-                    playerSpeedMult = -1;    //player moves towards left
+                    else
+                    {
+                        playerSpeedMult = -1;    //player moves towards left
+                    }
                 }
                 if (keyTogDir == 2)  //if player should be moving right
                 {
@@ -183,7 +186,10 @@ namespace _3dDodgeball
                         playerPos = GameUpd1.courtWidth - playerWidth; //player should be at the end of the maximum width
                         playerSpeedMult = 0;    //player does not move
                     }
-                    playerSpeedMult = 1; //player moves away from left
+                    else
+                    {
+                        playerSpeedMult = 1; //player moves away from left
+                    }
                 }
                 if  (keyTogDir == 0) //if player should not be moving
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,13 @@ namespace _3dDodgeball
             Graphics g = e.Graphics;
 
             g.FillRectangle(Brushes.Red, 0, 0, 10, 10);
-            g.FillRectangle(Brushes.Cyan, Convert.ToSingle(player1.playerPos * 100), game2.ClientSize.Height - 100, 100, 100);
+            g.FillRectangle(Brushes.Cyan, Convert.ToSingle(player1.playerPos * 100), game2.ClientSize.Height - Convert.ToSingle(player1.playerHeight * 100 * Math.Sqrt(0.5)), Convert.ToSingle(player1.playerWidth * 100), Convert.ToSingle(player1.playerHeight * 100 * Math.Sqrt(0.5)));
+
+            for (int i = 0; i < GameUpd1.enemyCount; i++)
+            {
+                g.FillRectangle(Brushes.Red, Convert.ToSingle(enemies1.enemyPos[i] * 100), 300 - Convert.ToSingle(enemies1.enemyHeight[i] * 100 * Math.Sqrt(0.5)), Convert.ToSingle(enemies1.enemyWidth[i] * 100), Convert.ToSingle(enemies1.enemyHeight[i] * 100 * Math.Sqrt(0.5)));
+                g.FillEllipse(Brushes.Green, Convert.ToSingle(enemies1.ball[i].ballX - (enemies1.ball[i].ballRadius / 2) * 100), 300 - Convert.ToSingle(enemies1.ball[i].ballY - (enemies1.ball[i].ballRadius / 2) * 100), Convert.ToSingle(enemies1.ball[i].ballRadius * 100), Convert.ToSingle(enemies1.ball[i].ballRadius * 100));
+            }
         }
     }
 }

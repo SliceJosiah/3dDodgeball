@@ -12,13 +12,13 @@ namespace _3dDodgeball
         private Player1 player1;
         private Render1 render1;
         public bool thrown = false;
-        double ballX;
-        double ballY;
-        double ballZ;
+        public double ballX;
+        public double ballY;
+        public double ballZ;
         double ballXvel;
         double ballYvel;
         double ballZvel;
-        double ballRadius = 1.1;
+        public double ballRadius = 1.1;
         double hitStrength;
         double dropTime;
         //const double gravity = -9.8;
