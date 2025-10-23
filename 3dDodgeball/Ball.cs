@@ -18,7 +18,7 @@ namespace _3dDodgeball
         double ballXvel;
         double ballYvel;
         double ballZvel;
-        public double ballRadius = 1.1;
+        public double ballRadius = 0.1;
         double hitStrength;
         double dropTime;
         //const double gravity = -9.8;
@@ -32,6 +32,7 @@ namespace _3dDodgeball
         {
             ballX = startX;
             ballY = GameUpd1.courtLength;
+            ballZ = 1.5; //initial height of ball when thrown
             ballXvel = ballSpeed * Math.Sin(throwAngleHor);
             ballYvel = ballSpeed * Math.Cos(throwAngleHor);
             dropTime = ballTime;
