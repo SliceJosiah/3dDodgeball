@@ -32,7 +32,7 @@ namespace _3dDodgeball
         {
             ballX = startX;
             ballY = GameUpd1.courtLength;
-            ballZ = 1.5; //initial height of ball when thrown
+            ballZ = 1; //initial height of ball when thrown
             ballXvel = ballSpeed * Math.Sin(throwAngleHor);
             ballYvel = ballSpeed * Math.Cos(throwAngleHor);
             dropTime = ballTime;
