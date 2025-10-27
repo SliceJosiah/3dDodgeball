@@ -10,7 +10,6 @@ namespace _3dDodgeball
     {
         //ball location arrays. 0 is always the player ball while balls afterwards
         private Player1 player1;
-        private Render1 render1;
         public bool thrown = false;
         public double ballX;
         public double ballY;
