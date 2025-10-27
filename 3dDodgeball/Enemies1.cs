@@ -82,7 +82,7 @@ namespace _3dDodgeball
                 }
                 ball[i] = new Ball(player1);
                 enemyHeight[i] = enemyWidth[i] * 4.5;  //enemy height is enemy width times 4.5
-                baseStateTime[i] = random.NextDouble() * (10 - 5) + 5;   //generate initial baseline time, between 5 and 10 seconds (longer than usual to give the player time to react)
+                baseStateTime[i] = random.NextDouble() * (10 - 2.5) + 2.5;   //generate initial baseline time, between 5 and 10 seconds (longer than usual to give the player time to react)
             }
         }
 
@@ -114,7 +114,7 @@ namespace _3dDodgeball
                     if (baseStateTime[i] <= 0) //if state timer is over
                     {
                         baseStateTime[i] = random.NextDouble() * (1 - 0.2) + 0.5 + playerDistancePerc * 2;  //generate random time until enemy throws ball, between 0.2 and 1 seconds, plus the enemy distance from the player times two
-                        double throwAngleHor = Math.Atan((enemyPos[i] - (player1.playerMiddle + player1.playerMove)) / GameUpd1.courtLength) - (2.5 * (Math.PI / 180)) + random.NextDouble() * (5 * (Math.PI / 180));    //generate throwing angle in radians, based on the position the player will be at in 1 second, and randomise either way by a maximum of 2.5 degrees.
+                        double throwAngleHor = Math.Atan2(((player1.playerMiddle/* + player1.playerMove*/) - enemyPos[i]), GameUpd1.courtLength) /*- (2.5 * (Math.PI / 180)) + random.NextDouble() * (5 * (Math.PI / 180))*/;    //generate throwing angle in radians, based on the position the player will be at in 1 second, and randomise either way by a maximum of 2.5 degrees.
                         double ballSpeed = random.NextDouble() * (14 - 6) + 6;   //generate random ball speed between 14 and 6 m/s
                         double ballTime = random.NextDouble() * (3 - 0.5) + 0.5;   //generate random ball drop time between 3 and 0.5 s. 
                         enemyStatus[i] = 2; //status = preparing to throw ball
