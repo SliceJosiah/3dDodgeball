@@ -118,7 +118,7 @@ namespace _3dDodgeball
                         double ballSpeed = random.NextDouble() * (14 - 6) + 6;   //generate random ball speed between 14 and 6 m/s
                         double ballTime = random.NextDouble() * (3 - 0.5) + 0.5;   //generate random ball drop time between 3 and 0.5 s. 
                         enemyStatus[i] = 2; //status = preparing to throw ball
-                        ball[i].prepareBall(throwAngleHor, ballSpeed, ballTime, enemyPos[i]);
+                        ball[i].prepareBall(throwAngleHor, ballSpeed, ballTime, enemyPos[i], enemyHeight[i], enemyWidth[i]);
                     }
                 }
                 if (enemyStatus[i] == 2)    //if enemy is preparing to throw ball
