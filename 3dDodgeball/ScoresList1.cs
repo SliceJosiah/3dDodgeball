@@ -14,6 +14,9 @@ namespace _3dDodgeball
     public partial class ScoresList1 : Form
     {
         string scoreFile = Application.StartupPath + @"\scores.txt";    //define location of score file
+        if (!File.Exists(scoreFile)) {
+            WriteAllText()
+        }
         List<Scores1> scores1 = new List<Scores1>();    //make list for scores using scores1
         public ScoresList1(string username, int pscore)
         {
