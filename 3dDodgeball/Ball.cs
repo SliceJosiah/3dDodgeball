@@ -27,7 +27,7 @@ namespace _3dDodgeball
             player1 = player1c;
         }
 
-        public void prepareBall(double throwAngleHor, double ballSpeed, double ballTime, double startX)
+        public void prepareBall(double throwAngleHor, double ballSpeed, double ballTime, double startX, double enemyWidth, double enemyHeight)
         {
             ballX = startX;
             ballY = GameUpd1.courtLength;
