@@ -72,14 +72,14 @@ namespace _3dDodgeball
                     }
                     thrown = false;
                 }
-                if (ballX <= 0) {   //if ball has hit the floor
+                if (ballZ <= 0) {   //if ball has hit the floor
                     bounces ++; //add to bounce number
-                    ballX = 0;  //put ball on floor
+                    ballZ = 0;  //put ball on floor
                     if (bounces >= 4) { //if this is the fourth time the ball has hit the ground
                         thrown = false;
                     } else {
-                        ballXvel *= 0.7;    //damp the X velocity by x0.7
-                        ballYvel *= 0.7;    //damp the Y velocity by x0.7
+                        ballXvel *= 0.8;    //damp the X velocity by x0.8
+                        ballYvel *= 0.8;    //damp the Y velocity by x0.8
                         ballZvel *= -0.5;   //reverse the Z velocity and damp it by x0.5
                     }
                 }
