@@ -24,7 +24,7 @@ namespace _3dDodgeball
             Graphics g = e.Graphics;
 
             g.FillRectangle(Brushes.Cyan, Convert.ToSingle(player1.playerPos * 100), game2.ClientSize.Height - Convert.ToSingle(player1.playerHeight * 100 * ym), Convert.ToSingle(player1.playerWidth * 100), Convert.ToSingle(player1.playerHeight * 100 * ym));
-            g.FillRectangle(Brushes.Green, 50, 0, 0, Convert.ToSingle(game2.ClientSize.Width * player1.playerHealth));
+            g.FillRectangle(Brushes.Green, 0, 0, Convert.ToSingle(game2.ClientSize.Width * player1.playerHealth), 50);
 
             for (int i = 0; i < GameUpd1.enemyCount; i++)
             {
