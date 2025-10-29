@@ -20,7 +20,8 @@ namespace _3dDodgeball
         public double ballRadius = 0.1;
         double hitStrength;
         double dropTime;
-        //const double gravity = -9.8;
+        const double gravity = 9.81;
+        int bounces;
 
         public Ball(Player1 player1c)
         {
@@ -34,8 +35,10 @@ namespace _3dDodgeball
             ballZ = enemyHeight - enemyWidth; //initial height of ball when thrown
             ballXvel = ballSpeed * Math.Sin(throwAngleHor);
             ballYvel = ballSpeed * Math.Cos(throwAngleHor);
+            ballZvel = 0;
             dropTime = ballTime;
             hitStrength = ballSpeed * 0.0142857142857;
+            bounces = 0;
         }
 
         public void ballUpd()
@@ -44,6 +47,8 @@ namespace _3dDodgeball
             {
                 ballX += ballXvel/100;  //Increase the X value of the ball by its X velocity divided by 100
                 ballY -= ballYvel/100;  //Decrese the Y value of the ball by its Y velocity divided by 100
+                ballZvel -= gravity/100;    //Decelerate the Z velocity of the ball by gravity divided by 100
+                ballZ += ballZvel/100;  //Decelerate the Z value of the ball by its Z velocity divided by 100
                 
                 if (ballY <= 0)
                 {
@@ -66,6 +71,17 @@ namespace _3dDodgeball
                         }
                     }
                     thrown = false;
+                }
+                if (ballX <= 0) {   //if ball has hit the floor
+                    bounces ++; //add to bounce number
+                    ballX = 0;  //put ball on floor
+                    if (bounces >= 4) { //if this is the fourth time the ball has hit the ground
+                        thrown = false;
+                    } else {
+                        ballXvel *= 0.7;    //damp the X velocity by x0.7
+                        ballYvel *= 0.7;    //damp the Y velocity by x0.7
+                        ballZvel *= -0.5;   //reverse the Z velocity and damp it by x0.5
+                    }
                 }
             }
         }
