@@ -16,12 +16,14 @@ namespace _3dDodgeball
         public static double courtWidth = 5;
         public static double courtLength = 10;
         public static int enemyCount = 5;
+        public string uname;
         public GameUpd1(Player1 player1a, Enemies1 enemies1a, Game2 game2a, string usernamea)
         {
             game2 = game2a; //set variable
             player1 = player1a; //set variable
             enemies1 = enemies1a;
             enemies1.enemyGen();
+            uname = usernamea;
             //enemies1.enemyPosLine = 350;    //how many pixels down is enemy position line
             //enemies1.enemyPosMax = 5;   //length of the max width enemies can travel in metres
         }
@@ -41,6 +43,9 @@ namespace _3dDodgeball
             else
             {
                 game2.Visible = false;
+                ScoresList1 scoresList1 = new ScoresList1(uname, Convert.ToInt32(player1.points));
+                scoresList1.Show();
+                (sender as System.Windows.Forms.Timer)?.Stop();
             }
         }
     }
