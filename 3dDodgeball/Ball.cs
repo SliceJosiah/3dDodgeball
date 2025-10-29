@@ -72,9 +72,9 @@ namespace _3dDodgeball
                     }
                     thrown = false;
                 }
-                if (ballX <= 0) {   //if ball has hit the floor
+                if (ballZ <= 0) {   //if ball has hit the floor
                     bounces ++; //add to bounce number
-                    ballX = 0;  //put ball on floor
+                    ballZ = 0;  //put ball on floor
                     if (bounces >= 4) { //if this is the fourth time the ball has hit the ground
                         thrown = false;
                     } else {
