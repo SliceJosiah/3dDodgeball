@@ -78,8 +78,8 @@ namespace _3dDodgeball
                     if (bounces >= 4) { //if this is the fourth time the ball has hit the ground
                         thrown = false;
                     } else {
-                        ballXvel *= 0.9;    //damp the X velocity by x0.9
-                        ballYvel *= 0.9;    //damp the Y velocity by x0.9
+                        ballXvel *= 0.8;    //damp the X velocity by x0.8
+                        ballYvel *= 0.8;    //damp the Y velocity by x0.8
                         ballZvel *= -0.5;   //reverse the Z velocity and damp it by x0.5
                     }
                 }
