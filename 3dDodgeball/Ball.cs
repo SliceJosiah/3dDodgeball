@@ -46,7 +46,7 @@ namespace _3dDodgeball
             if (thrown)
             {
                 ballX += ballXvel/100;  //Increase the X value of the ball by its X velocity divided by 100
-                ballY -= ballYvel/100;  //Decrese the Y value of the ball by its Y velocity divided by 100
+                ballY -= ballYvel/100;  //Decrease the Y value of the ball by its Y velocity divided by 100
                 ballZvel -= gravity/100;    //Decelerate the Z velocity of the ball by gravity divided by 100
                 ballZ += ballZvel/100;  //Decelerate the Z value of the ball by its Z velocity divided by 100
                 
