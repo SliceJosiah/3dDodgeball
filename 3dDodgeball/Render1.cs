@@ -30,7 +30,7 @@ namespace _3dDodgeball
             for (int i = 0; i < GameUpd1.enemyCount; i++)
             {
                 g.FillRectangle(Brushes.Red, Convert.ToSingle(enemies1.enemyPos[i] * 100), Convert.ToSingle((3 - enemies1.enemyHeight[i]) * 100 * ym), Convert.ToSingle(enemies1.enemyWidth[i] * 100), Convert.ToSingle(enemies1.enemyHeight[i] * 100 * ym));
-                g.FillEllipse(Brushes.Green, Convert.ToSingle((enemies1.ball[i].ballX - enemies1.ball[i].ballRadius) * 100), game2.ClientSize.Height - Convert.ToSingle((enemies1.ball[i].ballY + enemies1.ball[i].ballZ) * 100 * ym), Convert.ToSingle(enemies1.ball[i].ballRadius * 200), Convert.ToSingle(enemies1.ball[i].ballRadius * 200));
+                g.FillEllipse(Brushes.Green, Convert.ToSingle((enemies1.ball[i].ballX - enemies1.ball[i].ballRadius) * 100), game2.ClientSize.Height - Convert.ToSingle((enemies1.ball[i].ballY + enemies1.ball[i].ballZ - enemies1.ball[i].ballRadius) * 100 * ym), Convert.ToSingle(enemies1.ball[i].ballRadius * 200), Convert.ToSingle(enemies1.ball[i].ballRadius * 200));
             }
         }
     }
