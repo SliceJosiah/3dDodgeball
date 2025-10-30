@@ -35,10 +35,10 @@ namespace _3dDodgeball
                 player1.updatePlayer();
                 enemies1.updateEnemy();
                 game2.Invalidate();
-                game2.lblPlayerPos.Text = player1.playerPos.ToString();
+                /*game2.lblPlayerPos.Text = player1.playerPos.ToString();
                 game2.lblPlayerMultPos.Text = player1.playerSpeedMult.ToString();
                 game2.lblKeyTogDir.Text = player1.playerMove.ToString();
-                game2.lblRKeyDown.Text = player1.keyDown[2].ToString();
+                game2.lblRKeyDown.Text = player1.keyDown[2].ToString();*/
             }
             else
             {
