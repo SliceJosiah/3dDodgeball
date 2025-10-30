@@ -115,7 +115,7 @@ namespace _3dDodgeball
                     {
                         baseStateTime[i] = random.NextDouble() * (1 - 0.2) + 0.5 + playerDistancePerc * 2;  //generate random time until enemy throws ball, between 0.2 and 1 seconds, plus the enemy distance from the player times two
                         double throwAngleHor = Math.Atan2(((player1.playerMiddle/* + player1.playerMove*/) - enemyPos[i]), GameUpd1.courtLength) /*- (2.5 * (Math.PI / 180)) + random.NextDouble() * (5 * (Math.PI / 180))*/;    //generate throwing angle in radians, based on the position the player will be at in 1 second, and randomise either way by a maximum of 2.5 degrees.
-                        double ballSpeed = random.NextDouble() * (20 - 6) + 6;   //generate random ball speed between 20 and 6 m/s
+                        double ballSpeed = random.NextDouble() * (34 - 4) + 4;   //generate random ball speed between 34 and 4 m/s
                         double ballTime = random.NextDouble() * (3 - 0.5) + 0.5;   //generate random ball drop time between 3 and 0.5 s. 
                         enemyStatus[i] = 2; //status = preparing to throw ball
                         ball[i].prepareBall(throwAngleHor, ballSpeed, ballTime, enemyPos[i], enemyWidth[i], enemyHeight[i]);
@@ -126,7 +126,7 @@ namespace _3dDodgeball
                     baseStateTime[i] -= 0.01;
                     if (baseStateTime[i] <= 0) //if state timer is over
                     {
-                        baseStateTime[i] = random.NextDouble() * (8 - 4) + 4;  //generate random time until enemy starts preparing to throw the ball, between 4 and 8 seconds
+                        baseStateTime[i] = random.NextDouble() * (5 - 0.5) + 0.5;  //generate random time until enemy starts preparing to throw the ball, between 0.5 and 5 seconds
                         ball[i].thrown = true;  //throw the ball
                         enemyStatus[i] = 0; //status = idle
                     }
