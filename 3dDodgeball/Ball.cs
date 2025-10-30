@@ -52,7 +52,7 @@ namespace _3dDodgeball
                 
                 if (ballY <= 0)
                 {
-                    if (ballX > player1.playerPos - ballRadius &&  ballX < player1.playerPos + player1.playerWidth + ballRadius)    //if the ball would't hit the player, accomodating for the radius of the ball
+                    if (ballX > player1.playerPos - ballRadius && ballX < player1.playerPos + player1.playerWidth + ballRadius)    //if the ball would't hit the player, accomodating for the radius of the ball
                     {
                         player1.playerHealth -= hitStrength;    //decrese the player's health by the hitstrength
                         player1.points -= hitStrength * 2000;  //decrease the player's points by the hitstrength times 2000
@@ -69,8 +69,12 @@ namespace _3dDodgeball
                             player1.hitTimer1 = hitStrength * 7.5;  //set player hit timer to the hitstrength times 7.5
                             player1.playerStatus = 3;   //player has a hit timeout
                         }
+                        ballXvel *= -0.6;    //damp the X velocity by x0.6 and reverse
+                        ballYvel *= -0.6;    //damp the Y velocity by x0.6 and reverse
+                    } else {
+                        ballXvel *= -0.8;    //damp the X velocity by x0.8 and reverse
+                        ballYvel *= -0.8;    //damp the Y velocity by x0.8 and reverse
                     }
-                    thrown = false;
                 }
                 if (ballZ <= 0) {   //if ball has hit the floor
                     bounces ++; //add to bounce number
