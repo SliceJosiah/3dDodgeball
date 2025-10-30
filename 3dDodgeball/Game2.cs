@@ -25,7 +25,7 @@ namespace _3dDodgeball
             gameupd1 = new GameUpd1(player1, enemies1, this, username); //set variable to new instance, and pass instance of player1
             render1 = new Render1(player1, enemies1, this);    //set variable
 
-            this.Size = new Size(Convert.ToInt32(GameUpd1.courtWidth * 100), Convert.ToInt32((GameUpd1.courtLength + 3) * 100 * Math.Sqrt(0.5)));
+            this.ClientSize = new Size(Convert.ToInt32(GameUpd1.courtWidth * 100), Convert.ToInt32((GameUpd1.courtLength + 3) * 100 * Math.Sqrt(0.5)));
             this.DoubleBuffered = true; //double buffer reduce flicker
             // Enemies1 enemies1 = new Enemies1();
             // enemies1.enemyPosLine = 350;    //how many pixels down is enemy position line
