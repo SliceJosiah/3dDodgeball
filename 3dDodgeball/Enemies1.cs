@@ -36,6 +36,8 @@ namespace _3dDodgeball
         //variables for basic colours
         //public string[] enemyColour;
 
+        static readonly double ac = Math.PI / 180; //angle conversion constant
+
         Random random = new Random(Guid.NewGuid().GetHashCode());   //found this code on stackoverflow for a decent random seed generator, uses the hash code for a new guid integer as a seed
 
         public Enemies1(Player1 player1b)
@@ -114,7 +116,7 @@ namespace _3dDodgeball
                     if (baseStateTime[i] <= 0) //if state timer is over
                     {
                         baseStateTime[i] = random.NextDouble() * (1 - 0.2) + 0.5 + playerDistancePerc * 2;  //generate random time until enemy throws ball, between 0.2 and 1 seconds, plus the enemy distance from the player times two
-                        double throwAngleHor = Math.Atan2(((player1.playerMiddle/* + player1.playerMove*/) - enemyPos[i]), GameUpd1.courtLength) /*- (2.5 * (Math.PI / 180)) + random.NextDouble() * (5 * (Math.PI / 180))*/;    //generate throwing angle in radians, based on the position the player will be at in 1 second, and randomise either way by a maximum of 2.5 degrees.
+                        double throwAngleHor = Math.Atan2(((player1.playerMiddle/* + player1.playerMove*/) - enemyPos[i]), GameUpd1.courtLength) + (random.NextDouble() * (2.5 + 2.5) - 2.5 ) * ac;    //generate throwing angle in radians, based on the position the player will be at in 1 second, and randomise either way by a maximum of 2.5 degrees.
                         double ballSpeed = random.NextDouble() * (34 - 4) + 4;   //generate random ball speed between 34 and 4 m/s
                         double ballTime = random.NextDouble() * (3 - 0.5) + 0.5;   //generate random ball drop time between 3 and 0.5 s. 
                         enemyStatus[i] = 2; //status = preparing to throw ball
