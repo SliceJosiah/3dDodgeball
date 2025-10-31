@@ -11,6 +11,7 @@ namespace _3dDodgeball
         //ball location arrays. 0 is always the player ball while balls afterwards
         private Player1 player1;
         public bool thrown = false;
+        public bool visible = false;
         public double ballX;
         public double ballY;
         public double ballZ;
@@ -54,8 +55,8 @@ namespace _3dDodgeball
                 {
                     if (ballX > player1.playerPos - ballRadius && ballX < player1.playerPos + player1.playerWidth + ballRadius)    //if the ball would't hit the player, accomodating for the radius of the ball
                     {
-                        player1.playerHealth -= hitStrength;    //decrese the player's health by the hitstrength
-                        player1.points -= hitStrength * 2000;  //decrease the player's points by the hitstrength times 2000
+                        player1.playerHealth -= hitStrength / 5;    //decrese the player's health by the hitstrength
+                        player1.points -= hitStrength * 100;  //decrease the player's points by the hitstrength times 2000
                         if (player1.points < 0) //if the player's points are less than 0
                         {
                             player1.points = 0; //set the player's points to 0
@@ -71,9 +72,11 @@ namespace _3dDodgeball
                         }
                         ballXvel *= -0.6;    //damp the X velocity by x0.6 and reverse
                         ballYvel *= -0.6;    //damp the Y velocity by x0.6 and reverse
+                        ballX = 0.01; //move ball back into court to prevent multiple hits
                     } else {
                         ballXvel *= -0.8;    //damp the X velocity by x0.8 and reverse
                         ballYvel *= -0.8;    //damp the Y velocity by x0.8 and reverse
+                        ballX = 0.01; //move ball back into court
                     }
                 }
                 if (ballZ <= 0) {   //if ball has hit the floor
