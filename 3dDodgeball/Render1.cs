@@ -25,12 +25,20 @@ namespace _3dDodgeball
 
             for (int i = 0; i < GameUpd1.enemyCount; i++)
             {
-                g.FillEllipse(Brushes.Black, Convert.ToSingle((enemies1.ball[i].ballX - enemies1.ball[i].ballRadius) * 100), game2.ClientSize.Height - Convert.ToSingle((enemies1.ball[i].ballY - enemies1.ball[i].ballRadius) * 100 * ym), Convert.ToSingle(enemies1.ball[i].ballRadius * 200), Convert.ToSingle(enemies1.ball[i].ballRadius * 200 * ym));    //ball shadow
                 g.FillRectangle(Brushes.Red, Convert.ToSingle(enemies1.enemyPos[i] * 100), game2.ClientSize.Height - Convert.ToSingle((GameUpd1.courtLength + enemies1.enemyHeight[i]) * 100 * ym), Convert.ToSingle(enemies1.enemyWidth[i] * 100), Convert.ToSingle(enemies1.enemyHeight[i] * 100 * ym));  //enemy
-                g.FillEllipse(Brushes.Green, Convert.ToSingle((enemies1.ball[i].ballX - enemies1.ball[i].ballRadius) * 100), game2.ClientSize.Height - Convert.ToSingle((enemies1.ball[i].ballY + enemies1.ball[i].ballZ - enemies1.ball[i].ballRadius) * 100 * ym), Convert.ToSingle(enemies1.ball[i].ballRadius * 200), Convert.ToSingle(enemies1.ball[i].ballRadius * 200)); //ball
             }
+            for (int i = 0; i < GameUpd1.enemyCount; i++)
+            {
+                if (enemies1.ball[i].visible == true)
+                {
+                    g.FillEllipse(Brushes.Black, Convert.ToSingle((enemies1.ball[i].ballX - enemies1.ball[i].ballRadius) * 100), game2.ClientSize.Height - Convert.ToSingle((enemies1.ball[i].ballY) * 100 * ym), Convert.ToSingle(enemies1.ball[i].ballRadius * 200), Convert.ToSingle(enemies1.ball[i].ballRadius * 200 * ym)); //ball shadow
+                    g.FillEllipse(Brushes.Green, Convert.ToSingle((enemies1.ball[i].ballX - enemies1.ball[i].ballRadius) * 100), game2.ClientSize.Height - Convert.ToSingle((enemies1.ball[i].ballY + enemies1.ball[i].ballZ + enemies1.ball[i].ballRadius) * 100 * ym), Convert.ToSingle(enemies1.ball[i].ballRadius * 200), Convert.ToSingle(enemies1.ball[i].ballRadius * 200)); //ball
+                }
+            }
+
             g.FillRectangle(Brushes.Cyan, Convert.ToSingle(player1.playerPos * 100), game2.ClientSize.Height - Convert.ToSingle(player1.playerHeight * 100 * ym), Convert.ToSingle(player1.playerWidth * 100), Convert.ToSingle(player1.playerHeight * 100 * ym));  //player
-            g.FillRectangle(Brushes.Green, 0, 0, Convert.ToSingle(game2.ClientSize.Width * player1.playerHealth), 50);  //health bar
+            g.FillRectangle(Brushes.Green, 0, 0, Convert.ToSingle(game2.ClientSize.Width * player1.playerHealth), 25);  //health bar
+            g.DrawString("Points: " + Convert.ToString(Convert.ToInt32(player1.points)), new Font("Comic Sans MS", 10), Brushes.White, 4, 4); //points display
         }
     }
 }
