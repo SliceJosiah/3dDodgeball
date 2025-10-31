@@ -164,7 +164,7 @@ namespace _3dDodgeball
             if (playerStatus < 3)   //if player is not hit or out
             {
                 playerStatus = keyTogState;
-                points += 0.01;
+                points += 0.1;
 
                 //movement
                 if (keyTogDir == 1) //if player should be moving left
