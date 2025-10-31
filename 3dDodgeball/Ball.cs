@@ -28,7 +28,7 @@ namespace _3dDodgeball
             player1 = player1c;
         }
 
-        public void prepareBall(double throwAngleHor, double ballSpeed, double ballTime, double startX, double enemyWidth, double enemyHeight)
+        public void prepareBall(double throwAngleHor, double ballSpeed, double startX, double enemyWidth, double enemyHeight)
         {
             ballX = startX;
             ballY = GameUpd1.courtLength;
@@ -36,9 +36,9 @@ namespace _3dDodgeball
             ballXvel = ballSpeed * Math.Sin(throwAngleHor);
             ballYvel = ballSpeed * Math.Cos(throwAngleHor);
             ballZvel = 0;
-            dropTime = ballTime;
             hitStrength = ballSpeed * 0.0142857142857;
             bounces = 0;
+            visible = true;
         }
 
         public void ballUpd()
